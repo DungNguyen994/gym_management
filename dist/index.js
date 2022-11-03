@@ -35,46 +35,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require("reflect-metadata");
 const apollo_server_express_1 = require("apollo-server-express");
 const apollo_server_core_1 = require("apollo-server-core");
 const express_1 = __importDefault(require("express"));
 const http_1 = __importDefault(require("http"));
-const mongoose_1 = __importStar(require("mongoose"));
-const typeDefs = (0, apollo_server_express_1.gql) `
-  type User {
-    firstName: String
-    lastName: String
-    password: String
-    email: String
-    phoneNumber: String
-  }
-
-  type Query {
-    users: [User]
-  }
-`;
-const userSchema = new mongoose_1.Schema({
-    firstName: String,
-    lastName: String,
-    password: String,
-    email: String,
-    phoneNumber: String,
-});
-const User = mongoose_1.default.model("users", userSchema);
-const resolvers = {
-    Query: {
-        users: () => __awaiter(void 0, void 0, void 0, function* () { return yield User.find(); }),
-    },
-};
+const mongoose_1 = __importDefault(require("mongoose"));
+const dotenv = __importStar(require("dotenv"));
+dotenv.config();
+const typeDefs_1 = require("./typeDefs");
+const resolvers_1 = require("./resolvers");
+const express_jwt_1 = require("express-jwt");
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const corsOptions_1 = require("./config/corsOptions");
 function startApolloServer() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = (0, express_1.default)();
+        app.use((0, cookie_parser_1.default)());
+        app.use((0, express_jwt_1.expressjwt)({
+            secret: process.env.ACCESS_TOKEN_SECRET || "",
+            algorithms: ["HS256"],
+            credentialsRequired: false,
+        }));
         const httpServer = http_1.default.createServer(app);
-        mongoose_1.default.connect("mongodb+srv://dungnguyen:H91GDLuuIK55xf2U@cluster0.csixpj4.mongodb.net/?retryWrites=true&w=majority", { dbName: "gym" });
-        console.log((yield User.find()).map((i) => i.firstName));
+        const { DB_URL, DB_NAME } = process.env;
+        mongoose_1.default.connect(DB_URL, { dbName: DB_NAME });
         const server = new apollo_server_express_1.ApolloServer({
-            typeDefs,
-            resolvers,
+            typeDefs: typeDefs_1.typeDefs,
+            resolvers: resolvers_1.resolvers,
+            context: ({ req, res }) => {
+                const user = req.auth || null;
+                return { user, res, req };
+            },
             csrfPrevention: true,
             cache: "bounded",
             plugins: [
@@ -83,10 +75,10 @@ function startApolloServer() {
             ],
         });
         yield server.start();
-        server.applyMiddleware({ app });
-        yield new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
-        console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+        server.applyMiddleware({ app, cors: corsOptions_1.corsOptions });
+        yield new Promise((resolve) => httpServer.listen({ port: process.env.PORT }, resolve));
+        console.log(`🚀 Server ready at http://localhost:${process.env.PORT}${server.graphqlPath}`);
     });
 }
-startApolloServer();
+startApolloServer().catch((e) => console.log(e));
 //# sourceMappingURL=index.js.map
