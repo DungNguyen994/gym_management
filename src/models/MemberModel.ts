@@ -7,14 +7,11 @@ const memberSchema = new Schema({
   address: String,
   photo: String,
   email: String,
-  note: String,
+  notes: Schema.Types.Mixed,
   gender: String,
-  amount: String,
-  term: String,
-  membershipType: String,
   startDate: String,
   endDate: String,
   birthDate: String,
-  paymentType: String,
+  payments: Schema.Types.Mixed,
 });
 export const MemberModel = mongoose.model("member", memberSchema);

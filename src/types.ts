@@ -1,6 +1,6 @@
-import { ObjectType, Field } from "type-graphql";
+import { Request, Response } from "express";
+import { Field, ObjectType } from "type-graphql";
 import { Error_Code } from "./constant";
-import { Response, Request } from "express";
 
 type UserNameAndPasswordInput = {
   username: string;
@@ -72,6 +72,41 @@ class TextResponse {
   data?: string;
 }
 @ObjectType()
+class Payment {
+  @Field()
+  readonly productId?: string;
+  @Field()
+  productName: string;
+  @Field()
+  createdAt: string;
+  @Field()
+  quantity: number;
+  @Field()
+  unitPrice: number;
+  @Field()
+  term: string;
+}
+@ObjectType()
+class PaymentInput {
+  @Field()
+  readonly productId?: string;
+  @Field()
+  productName: string;
+  @Field()
+  quantity: number;
+  @Field()
+  unitPrice: number;
+  @Field()
+  term: string;
+}
+@ObjectType()
+class Note {
+  @Field()
+  message: string;
+  @Field()
+  createdAt: string;
+}
+@ObjectType()
 class Member {
   @Field()
   _id: string;
@@ -88,19 +123,40 @@ class Member {
   @Field()
   address: string;
   @Field()
-  note: string;
+  notes: Note[];
   @Field()
   gender: string;
   @Field()
   photo: string;
   @Field()
-  term: string;
+  payments: Payment[];
   @Field()
-  membershipType: string;
+  startDate: string;
   @Field()
-  amount: string;
+  endDate: string;
+}
+@ObjectType()
+class AddMemberInput {
   @Field()
-  paymentType: string;
+  firstName: string;
+  @Field()
+  lastName: string;
+  @Field()
+  birthDate: string;
+  @Field()
+  phoneNumber: string;
+  @Field()
+  email: string;
+  @Field()
+  address: string;
+  @Field()
+  notes: Note[];
+  @Field()
+  gender: string;
+  @Field()
+  photo: string;
+  @Field()
+  payment: PaymentInput;
   @Field()
   startDate: string;
   @Field()
@@ -132,4 +188,5 @@ export {
   ListMemberResponse,
   MyContext,
   RegisterInput,
+  AddMemberInput,
 };

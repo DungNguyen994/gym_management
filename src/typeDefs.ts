@@ -6,7 +6,34 @@ export const typeDefs = gql`
     email: String
     phoneNumber: String
   }
-
+  input NoteInput {
+    message: String
+  }
+  type MemberNote {
+    message: String
+    createdAt: String
+  }
+  input PaymentInput {
+    productId: ID
+    productName: String!
+    unitPrice: Float!
+    total: Float!
+    collected: Float!
+    change: Float!
+    term: String
+    quantity: Int
+  }
+  type Payment {
+    productId: ID
+    productName: String!
+    createdAt: String!
+    unitPrice: Float!
+    total: Float!
+    collected: Float!
+    change: Float!
+    term: String
+    quantity: Int
+  }
   type Error {
     type: String
     pointer: String
@@ -25,18 +52,15 @@ export const typeDefs = gql`
 
   type Member {
     _id: ID
-    firstName: String
-    lastName: String
-    phoneNumber: String
+    firstName: String!
+    lastName: String!
+    phoneNumber: String!
     birthDate: String
     email: String
     address: String
     note: String
     gender: String
-    term: String
-    membershipType: String
-    paymentType: String
-    amount: String
+    payments: [Payment!]!
     startDate: String
     endDate: String
     photo: String
@@ -85,12 +109,9 @@ export const typeDefs = gql`
       birthDate: String
       email: String
       address: String
-      note: String
+      notes: [NoteInput]
       gender: String
-      term: String!
-      membershipType: String!
-      paymentType: String!
-      amount: String!
+      payment: PaymentInput!
       startDate: String!
       endDate: String!
       photo: String
