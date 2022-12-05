@@ -85,17 +85,40 @@ class Payment {
   unitPrice: number;
   @Field()
   term: string;
+  @Field()
+  paymentMethod: string;
 }
 @ObjectType()
 class PaymentInput {
   @Field()
-  readonly productId?: string;
-  @Field()
   productName: string;
+  @Field()
+  membershipType: string;
   @Field()
   quantity: number;
   @Field()
   unitPrice: number;
+  @Field()
+  term: string;
+  @Field()
+  collected: number;
+  @Field()
+  change: number;
+  @Field()
+  total: number;
+  @Field()
+  paymentMethod: string;
+  @Field()
+  memberId: string;
+}
+@ObjectType()
+class MembershipInput {
+  @Field()
+  membershipType: string;
+  @Field()
+  startDate: string;
+  @Field()
+  endDate: string;
   @Field()
   term: string;
 }
@@ -150,17 +173,15 @@ class AddMemberInput {
   @Field()
   address: string;
   @Field()
-  notes: Note[];
+  note: string;
   @Field()
   gender: string;
   @Field()
   photo: string;
   @Field()
+  membership: MembershipInput;
+  @Field()
   payment: PaymentInput;
-  @Field()
-  startDate: string;
-  @Field()
-  endDate: string;
 }
 @ObjectType()
 class MemberResponse {

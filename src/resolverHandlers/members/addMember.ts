@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { PaymentModel } from "../../models/PaymentModel";
 import {
   DATE_FORMAT,
   NoPermissionError,
@@ -17,18 +18,16 @@ export const addMemberHandler = async (
   const { role } = user;
   if (role === User_Role.member) return { errors: NoPermissionError };
   else {
-    const notes =
-      args.notes?.map((i) => ({
-        ...i,
-        createdAt: dayjs().format(DATE_FORMAT),
-      })) || [];
-    const payment = { ...args.payment, createdAt: dayjs().format(DATE_FORMAT) };
-    const member = new MemberModel({
-      ...args,
-      notes: notes,
-      payments: [payment],
-    });
-    await member.save();
+    const memberships = [args.membership];
+    const member = new MemberModel({ ...args, memberships });
+    const newMember = await member.save();
+    const payment = {
+      ...args.payment,
+      createdAt: dayjs().format(DATE_FORMAT),
+      memberId: newMember._id,
+    };
+    const newPayment = new PaymentModel(payment);
+    await newPayment.save();
     return { data: "Added Member Successfully" };
   }
 };

@@ -22,6 +22,24 @@ export const typeDefs = gql`
     change: Float!
     term: String
     quantity: Int
+    paymentMethod: String!
+  }
+  input NewMembership {
+    membershipType: String!
+    startDate: String!
+    endDate: String!
+    term: String!
+  }
+  input NewPayment {
+    productName: String
+    membershipType: String
+    unitPrice: Float
+    total: Float!
+    collected: Float!
+    change: Float!
+    term: String
+    quantity: Int
+    paymentMethod: String!
   }
   type Payment {
     productId: ID
@@ -33,6 +51,7 @@ export const typeDefs = gql`
     change: Float!
     term: String
     quantity: Int
+    paymentMethod: String!
   }
   type Error {
     type: String
@@ -109,11 +128,10 @@ export const typeDefs = gql`
       birthDate: String
       email: String
       address: String
-      notes: [NoteInput]
+      note: String
       gender: String
-      payment: PaymentInput!
-      startDate: String!
-      endDate: String!
+      payment: NewPayment!
+      membership: NewMembership!
       photo: String
     ): TextResponse
     updateMember(
