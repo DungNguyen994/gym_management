@@ -53,6 +53,12 @@ export const typeDefs = gql`
     quantity: Int
     paymentMethod: String!
   }
+  type Membership {
+    membershipType: String!
+    startDate: String!
+    endDate: String!
+    term: String!
+  }
   type Error {
     type: String
     pointer: String
@@ -70,7 +76,7 @@ export const typeDefs = gql`
   }
 
   type Member {
-    _id: ID
+    id: ID
     firstName: String!
     lastName: String!
     phoneNumber: String!
@@ -79,9 +85,7 @@ export const typeDefs = gql`
     address: String
     note: String
     gender: String
-    payments: [Payment!]!
-    startDate: String
-    endDate: String
+    memberships: [Membership!]!
     photo: String
   }
 
@@ -105,7 +109,7 @@ export const typeDefs = gql`
     user(username: String!): UserResponse
     me: UserResponse
     members: ListMemberResponse
-    member(phoneNumber: String!): MemberResponse
+    member(id: ID!): MemberResponse
     refreshToken: TextResponse
     logout: TextResponse
   }
@@ -135,7 +139,7 @@ export const typeDefs = gql`
       photo: String
     ): TextResponse
     updateMember(
-      _id: ID!
+      id: ID!
       firstName: String!
       lastName: String!
       phoneNumber: String!
@@ -145,6 +149,9 @@ export const typeDefs = gql`
       note: String
       gender: String
       photo: String
+      memberships: [NewMembership]
+      payment: NewPayment
     ): TextResponse
+    deleteMember(id: ID!): TextResponse
   }
 `;

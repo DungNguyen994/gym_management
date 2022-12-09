@@ -71,23 +71,31 @@ class TextResponse {
   @Field()
   data?: string;
 }
-@ObjectType()
-class Payment {
-  @Field()
-  readonly productId?: string;
-  @Field()
-  productName: string;
-  @Field()
-  createdAt: string;
-  @Field()
-  quantity: number;
-  @Field()
-  unitPrice: number;
-  @Field()
-  term: string;
-  @Field()
-  paymentMethod: string;
-}
+// @ObjectType()
+// class Payment {
+//   @Field()
+//   readonly productId?: string;
+//   @Field()
+//   productName: string;
+//   @Field()
+//   membershipType: string;
+//   @Field()
+//   createdAt: string;
+//   @Field()
+//   quantity: number;
+//   @Field()
+//   collected: number;
+//   @Field()
+//   change: number;
+//   @Field()
+//   total: number;
+//   @Field()
+//   unitPrice: number;
+//   @Field()
+//   term: string;
+//   @Field()
+//   paymentMethod: string;
+// }
 @ObjectType()
 class PaymentInput {
   @Field()
@@ -121,18 +129,13 @@ class MembershipInput {
   endDate: string;
   @Field()
   term: string;
-}
-@ObjectType()
-class Note {
   @Field()
-  message: string;
-  @Field()
-  createdAt: string;
+  onHold: boolean;
 }
 @ObjectType()
 class Member {
   @Field()
-  _id: string;
+  readonly id: string;
   @Field()
   firstName: string;
   @Field()
@@ -146,17 +149,15 @@ class Member {
   @Field()
   address: string;
   @Field()
-  notes: Note[];
+  note: string;
   @Field()
   gender: string;
   @Field()
   photo: string;
   @Field()
-  payments: Payment[];
+  memberships: MembershipInput[];
   @Field()
-  startDate: string;
-  @Field()
-  endDate: string;
+  payment: PaymentInput;
 }
 @ObjectType()
 class AddMemberInput {

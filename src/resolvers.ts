@@ -4,6 +4,8 @@ import { getUsers } from "./resolverHandlers/getUsers";
 import { loginHandler } from "./resolverHandlers/login";
 import { logoutHandler } from "./resolverHandlers/logoutHandler";
 import { addMemberHandler } from "./resolverHandlers/members/addMember";
+import { deleteMemberHandler } from "./resolverHandlers/members/deleteMember";
+import { getMemberHandler } from "./resolverHandlers/members/getMember";
 import { getMembersHandler } from "./resolverHandlers/members/getMembers";
 import { updateMemberHandler } from "./resolverHandlers/members/updateMember";
 import { refreshTokenHandler } from "./resolverHandlers/refreshTokenHandler";
@@ -31,6 +33,7 @@ export const resolvers = {
       return { data: user };
     },
     members: getMembersHandler,
+    member: getMemberHandler,
   },
   Mutation: {
     register: registerHandler,
@@ -38,5 +41,6 @@ export const resolvers = {
     removeUser: removeUserHandler,
     addMember: addMemberHandler,
     updateMember: updateMemberHandler,
+    deleteMember: deleteMemberHandler,
   },
 };
