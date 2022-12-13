@@ -29,6 +29,7 @@ export const typeDefs = gql`
     startDate: String!
     endDate: String!
     term: String!
+    status: String
   }
   input NewPayment {
     productName: String
@@ -58,6 +59,7 @@ export const typeDefs = gql`
     startDate: String!
     endDate: String!
     term: String!
+    status: String!
   }
   type Error {
     type: String
@@ -89,6 +91,16 @@ export const typeDefs = gql`
     photo: String
   }
 
+  type Product {
+    id: ID
+    productType: String!
+    productName: String!
+    unitPrice: Float!
+    discountPercent: Float
+    supplier: String
+    photo: String
+  }
+
   type MemberResponse {
     errors: Error
     data: Member
@@ -97,6 +109,16 @@ export const typeDefs = gql`
   type ListMemberResponse {
     errors: Error
     data: [Member]
+  }
+
+  type ProductResponse {
+    errors: Error
+    data: Product
+  }
+
+  type ListProductResponse {
+    errors: Error
+    data: [Product]
   }
 
   type TextResponse {
@@ -112,6 +134,8 @@ export const typeDefs = gql`
     member(id: ID!): MemberResponse
     refreshToken: TextResponse
     logout: TextResponse
+    products: ListProductResponse
+    product(id: ID!): ProductResponse
   }
 
   type Mutation {
@@ -153,5 +177,25 @@ export const typeDefs = gql`
       payment: NewPayment
     ): TextResponse
     deleteMember(id: ID!): TextResponse
+    holdMembership(memberId: ID!, startDate: String!): TextResponse
+    activateMembership(memberId: ID!, startDate: String!): TextResponse
+    addProduct(
+      productType: String!
+      productName: String!
+      unitPrice: Float!
+      discountPercent: Float!
+      photo: String
+      supplier: String
+    ): TextResponse
+    updateProduct(
+      id: ID!
+      productType: String!
+      productName: String!
+      unitPrice: Float!
+      discountPercent: Float!
+      photo: String
+      supplier: String
+    ): TextResponse
+    deleteProduct(id: ID!): TextResponse
   }
 `;

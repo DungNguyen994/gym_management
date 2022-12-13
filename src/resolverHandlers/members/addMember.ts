@@ -18,7 +18,12 @@ export const addMemberHandler = async (
   const { role } = user;
   if (role === User_Role.member) return { errors: NoPermissionError };
   else {
-    const memberships = [args.membership];
+    const memberships = [
+      {
+        ...args.membership,
+        status: dayjs(args.membership.startDate).isAfter(dayjs()) ? "H" : "A",
+      },
+    ];
     const member = new MemberModel({ ...args, memberships });
     const newMember = await member.save();
     const payment = {

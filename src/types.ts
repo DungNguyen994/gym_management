@@ -130,7 +130,9 @@ class MembershipInput {
   @Field()
   term: string;
   @Field()
-  onHold: boolean;
+  status: string;
+  @Field()
+  holdDate: string;
 }
 @ObjectType()
 class Member {
@@ -185,6 +187,38 @@ class AddMemberInput {
   payment: PaymentInput;
 }
 @ObjectType()
+class AddProductInput {
+  @Field()
+  productType: string;
+  @Field()
+  productName: string;
+  @Field()
+  photo: string;
+  @Field()
+  unitPrice: number;
+  @Field()
+  discountPercent: number;
+  @Field()
+  supplier: string;
+}
+@ObjectType()
+class Product {
+  @Field()
+  readonly id: string;
+  @Field()
+  productType: string;
+  @Field()
+  productName: string;
+  @Field()
+  photo: string;
+  @Field()
+  unitPrice: number;
+  @Field()
+  discountPercent: number;
+  @Field()
+  supplier: string;
+}
+@ObjectType()
 class MemberResponse {
   @Field()
   data?: Member;
@@ -195,6 +229,20 @@ class MemberResponse {
 class ListMemberResponse {
   @Field()
   data?: Member[];
+  @Field()
+  errors?: Error;
+}
+@ObjectType()
+class ProductResponse {
+  @Field()
+  data?: Product;
+  @Field()
+  errors?: Error;
+}
+@ObjectType()
+class ListProductResponse {
+  @Field()
+  data?: Product[];
   @Field()
   errors?: Error;
 }
@@ -211,4 +259,8 @@ export {
   MyContext,
   RegisterInput,
   AddMemberInput,
+  AddProductInput,
+  Product,
+  ListProductResponse,
+  ProductResponse,
 };
