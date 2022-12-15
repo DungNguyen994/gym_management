@@ -35,19 +35,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
-const apollo_server_express_1 = require("apollo-server-express");
 const apollo_server_core_1 = require("apollo-server-core");
+const apollo_server_express_1 = require("apollo-server-express");
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const dotenv = __importStar(require("dotenv"));
 const express_1 = __importDefault(require("express"));
+const express_jwt_1 = require("express-jwt");
 const http_1 = __importDefault(require("http"));
 const mongoose_1 = __importDefault(require("mongoose"));
-const dotenv = __importStar(require("dotenv"));
-dotenv.config();
-const typeDefs_1 = require("./typeDefs");
-const resolvers_1 = require("./resolvers");
-const express_jwt_1 = require("express-jwt");
-const cookie_parser_1 = __importDefault(require("cookie-parser"));
+require("reflect-metadata");
 const corsOptions_1 = require("./config/corsOptions");
+const resolvers_1 = require("./resolvers");
+const typeDefs_1 = require("./typeDefs");
+dotenv.config();
 function startApolloServer() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = (0, express_1.default)();
