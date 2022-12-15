@@ -101,6 +101,18 @@ export const typeDefs = gql`
     photo: String
   }
 
+  type Inventory {
+    id: ID
+    productId: String!
+    unitPrice: Float!
+    discountPercent: Float
+    productType: String!
+    productName: String!
+    quantity: Int!
+    supplier: String
+    photo: String
+  }
+
   type MemberResponse {
     errors: Error
     data: Member
@@ -121,6 +133,11 @@ export const typeDefs = gql`
     data: [Product]
   }
 
+  type ListInventoryResponse {
+    errors: Error
+    data: [Inventory]
+  }
+
   type TextResponse {
     errors: Error
     data: String
@@ -136,6 +153,7 @@ export const typeDefs = gql`
     logout: TextResponse
     products: ListProductResponse
     product(id: ID!): ProductResponse
+    inventory: ListInventoryResponse
   }
 
   type Mutation {
@@ -197,5 +215,6 @@ export const typeDefs = gql`
       supplier: String
     ): TextResponse
     deleteProduct(id: ID!): TextResponse
+    stockIn(productId: String!, quantity: Int!): TextResponse
   }
 `;

@@ -202,6 +202,34 @@ class AddProductInput {
   supplier: string;
 }
 @ObjectType()
+class StockIn {
+  @Field()
+  productId: string;
+  @Field()
+  quantity: number;
+}
+@ObjectType()
+class Inventory {
+  @Field()
+  readonly id: string;
+  @Field()
+  productType: string;
+  @Field()
+  productName: string;
+  @Field()
+  productId: string;
+  @Field()
+  quantity: number;
+  @Field()
+  unitPrice: number;
+  @Field()
+  discountPercent: number;
+  @Field()
+  supplier: string;
+  @Field()
+  photo: string;
+}
+@ObjectType()
 class Product {
   @Field()
   readonly id: string;
@@ -217,6 +245,20 @@ class Product {
   discountPercent: number;
   @Field()
   supplier: string;
+}
+@ObjectType()
+class InventoryResponse {
+  @Field()
+  data?: Inventory;
+  @Field()
+  errors?: Error;
+}
+@ObjectType()
+class ListInventoryResponse {
+  @Field()
+  data?: Inventory[];
+  @Field()
+  errors?: Error;
 }
 @ObjectType()
 class MemberResponse {
@@ -263,4 +305,8 @@ export {
   Product,
   ListProductResponse,
   ProductResponse,
+  Inventory,
+  StockIn,
+  InventoryResponse,
+  ListInventoryResponse,
 };

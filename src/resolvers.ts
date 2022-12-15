@@ -1,6 +1,8 @@
 import { UnauthorizedError } from "./constant";
 import { getUser } from "./resolverHandlers/getUser";
 import { getUsers } from "./resolverHandlers/getUsers";
+import { getInventoryHandler } from "./resolverHandlers/inventory/getInventory";
+import { stockInHandler } from "./resolverHandlers/inventory/stockIn";
 import { loginHandler } from "./resolverHandlers/login";
 import { logoutHandler } from "./resolverHandlers/logoutHandler";
 import { activateMembershipHandler } from "./resolverHandlers/members/activateMembership";
@@ -43,6 +45,7 @@ export const resolvers = {
     member: getMemberHandler,
     products: getProductsHandler,
     product: getProductHandler,
+    inventory: getInventoryHandler,
   },
   Mutation: {
     register: registerHandler,
@@ -56,5 +59,6 @@ export const resolvers = {
     addProduct: addProductHandler,
     deleteProduct: deleteProductHandler,
     updateProduct: updateProductHandler,
+    stockIn: stockInHandler,
   },
 };
