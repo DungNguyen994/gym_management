@@ -18,7 +18,7 @@ import cors from "cors";
 async function startApolloServer() {
   const app = express();
   app.use(cookieParser());
-  app.use(cors());
+  app.use(cors(corsOptions));
   app.use(
     expressjwt({
       secret: process.env.ACCESS_TOKEN_SECRET || "",
@@ -49,7 +49,7 @@ async function startApolloServer() {
   app.use(
     "/graphql",
     cors<cors.CorsRequest>({
-      origin: ["https://gymbot.onrender.com/"],
+      origin: "https://gymbot.onrender.com/",
     })
   );
   server.applyMiddleware({ app, cors: corsOptions });
