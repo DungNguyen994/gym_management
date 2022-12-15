@@ -1,24 +1,22 @@
-import "reflect-metadata";
-import { ApolloServer } from "apollo-server-express";
 import {
-  ApolloServerPluginLandingPageLocalDefault,
   ApolloServerPluginDrainHttpServer,
+  ApolloServerPluginLandingPageLocalDefault,
 } from "apollo-server-core";
+import { ApolloServer } from "apollo-server-express";
+import cookieParser from "cookie-parser";
+import * as dotenv from "dotenv";
 import express, { Response } from "express";
+import { expressjwt, Request } from "express-jwt";
 import http from "http";
 import mongoose from "mongoose";
-import * as dotenv from "dotenv";
-dotenv.config();
-import { typeDefs } from "./typeDefs";
-import { resolvers } from "./resolvers";
-import { expressjwt, Request } from "express-jwt";
-import cookieParser from "cookie-parser";
+import "reflect-metadata";
 import { corsOptions } from "./config/corsOptions";
-import cors from "cors";
+import { resolvers } from "./resolvers";
+import { typeDefs } from "./typeDefs";
+dotenv.config();
 async function startApolloServer() {
   const app = express();
   app.use(cookieParser());
-  app.use(cors(corsOptions));
   app.use(
     expressjwt({
       secret: process.env.ACCESS_TOKEN_SECRET || "",
@@ -46,12 +44,6 @@ async function startApolloServer() {
     ],
   });
   await server.start();
-  app.use(
-    "/graphql",
-    cors<cors.CorsRequest>({
-      origin: "https://gymbot.onrender.com/",
-    })
-  );
   server.applyMiddleware({ app, cors: corsOptions });
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: process.env.PORT }, resolve)
