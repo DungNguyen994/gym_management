@@ -18,6 +18,7 @@ import cors from "cors";
 async function startApolloServer() {
   const app = express();
   app.use(cookieParser());
+  app.use(cors());
   app.use(
     expressjwt({
       secret: process.env.ACCESS_TOKEN_SECRET || "",
