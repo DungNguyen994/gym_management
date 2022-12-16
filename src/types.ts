@@ -71,41 +71,29 @@ class TextResponse {
   @Field()
   data?: string;
 }
-// @ObjectType()
-// class Payment {
-//   @Field()
-//   readonly productId?: string;
-//   @Field()
-//   productName: string;
-//   @Field()
-//   membershipType: string;
-//   @Field()
-//   createdAt: string;
-//   @Field()
-//   quantity: number;
-//   @Field()
-//   collected: number;
-//   @Field()
-//   change: number;
-//   @Field()
-//   total: number;
-//   @Field()
-//   unitPrice: number;
-//   @Field()
-//   term: string;
-//   @Field()
-//   paymentMethod: string;
-// }
+@ObjectType()
+class Payment {
+  @Field()
+  readonly id?: string;
+  @Field()
+  products: Product[];
+  @Field()
+  createdAt?: string;
+  @Field()
+  memberId?: string;
+  @Field()
+  collected: number;
+  @Field()
+  change: number;
+  @Field()
+  total: number;
+  @Field()
+  paymentMethod: string;
+}
 @ObjectType()
 class PaymentInput {
   @Field()
-  productName: string;
-  @Field()
   membershipType: string;
-  @Field()
-  quantity: number;
-  @Field()
-  unitPrice: number;
   @Field()
   term: string;
   @Field()
@@ -234,6 +222,10 @@ class Product {
   @Field()
   readonly id: string;
   @Field()
+  readonly productId?: string;
+  @Field()
+  readonly inventoryId: string;
+  @Field()
   productType: string;
   @Field()
   productName: string;
@@ -241,6 +233,8 @@ class Product {
   photo: string;
   @Field()
   unitPrice: number;
+  @Field()
+  buyQuantity: number;
   @Field()
   discountPercent: number;
   @Field()
@@ -309,4 +303,5 @@ export {
   StockIn,
   InventoryResponse,
   ListInventoryResponse,
+  Payment,
 };

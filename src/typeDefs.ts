@@ -24,6 +24,16 @@ export const typeDefs = gql`
     quantity: Int
     paymentMethod: String!
   }
+  input ProductInput {
+    inventoryId: ID!
+    productId: ID!
+    productName: String!
+    supplier: String
+    productType: String
+    unitPrice: Float!
+    discountPercent: Float
+    buyQuantity: Int
+  }
   input NewMembership {
     membershipType: String!
     startDate: String!
@@ -216,5 +226,13 @@ export const typeDefs = gql`
     ): TextResponse
     deleteProduct(id: ID!): TextResponse
     stockIn(productId: String!, quantity: Int!): TextResponse
+    addPayment(
+      products: [ProductInput]!
+      paymentMethod: String!
+      memberId: String
+      change: Float
+      collected: Float
+      total: Float!
+    ): TextResponse
   }
 `;

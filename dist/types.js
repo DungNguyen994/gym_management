@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListInventoryResponse = exports.InventoryResponse = exports.StockIn = exports.Inventory = exports.ProductResponse = exports.ListProductResponse = exports.Product = exports.AddProductInput = exports.AddMemberInput = exports.ListMemberResponse = exports.MemberResponse = exports.ListUserResponse = exports.TextResponse = exports.Member = exports.UserResponse = exports.User = exports.Error = void 0;
+exports.Payment = exports.ListInventoryResponse = exports.InventoryResponse = exports.StockIn = exports.Inventory = exports.ProductResponse = exports.ListProductResponse = exports.Product = exports.AddProductInput = exports.AddMemberInput = exports.ListMemberResponse = exports.MemberResponse = exports.ListUserResponse = exports.TextResponse = exports.Member = exports.UserResponse = exports.User = exports.Error = void 0;
 const type_graphql_1 = require("type-graphql");
 const constant_1 = require("./constant");
 let User = class User {
@@ -102,49 +102,50 @@ TextResponse = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], TextResponse);
 exports.TextResponse = TextResponse;
-// @ObjectType()
-// class Payment {
-//   @Field()
-//   readonly productId?: string;
-//   @Field()
-//   productName: string;
-//   @Field()
-//   membershipType: string;
-//   @Field()
-//   createdAt: string;
-//   @Field()
-//   quantity: number;
-//   @Field()
-//   collected: number;
-//   @Field()
-//   change: number;
-//   @Field()
-//   total: number;
-//   @Field()
-//   unitPrice: number;
-//   @Field()
-//   term: string;
-//   @Field()
-//   paymentMethod: string;
-// }
+let Payment = class Payment {
+};
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Payment.prototype, "id", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Array)
+], Payment.prototype, "products", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Payment.prototype, "createdAt", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Payment.prototype, "memberId", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Number)
+], Payment.prototype, "collected", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Number)
+], Payment.prototype, "change", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Number)
+], Payment.prototype, "total", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Payment.prototype, "paymentMethod", void 0);
+Payment = __decorate([
+    (0, type_graphql_1.ObjectType)()
+], Payment);
+exports.Payment = Payment;
 let PaymentInput = class PaymentInput {
 };
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
-], PaymentInput.prototype, "productName", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    __metadata("design:type", String)
 ], PaymentInput.prototype, "membershipType", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    __metadata("design:type", Number)
-], PaymentInput.prototype, "quantity", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    __metadata("design:type", Number)
-], PaymentInput.prototype, "unitPrice", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
@@ -400,6 +401,14 @@ __decorate([
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
+], Product.prototype, "productId", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Product.prototype, "inventoryId", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
 ], Product.prototype, "productType", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
@@ -413,6 +422,10 @@ __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", Number)
 ], Product.prototype, "unitPrice", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Number)
+], Product.prototype, "buyQuantity", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", Number)

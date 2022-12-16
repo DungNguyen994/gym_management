@@ -26,6 +26,16 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     quantity: Int
     paymentMethod: String!
   }
+  input ProductInput {
+    inventoryId: ID!
+    productId: ID!
+    productName: String!
+    supplier: String
+    productType: String
+    unitPrice: Float!
+    discountPercent: Float
+    buyQuantity: Int
+  }
   input NewMembership {
     membershipType: String!
     startDate: String!
@@ -218,6 +228,14 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     ): TextResponse
     deleteProduct(id: ID!): TextResponse
     stockIn(productId: String!, quantity: Int!): TextResponse
+    addPayment(
+      products: [ProductInput]!
+      paymentMethod: String!
+      memberId: String
+      change: Float
+      collected: Float
+      total: Float!
+    ): TextResponse
   }
 `;
 //# sourceMappingURL=typeDefs.js.map

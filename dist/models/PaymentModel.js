@@ -26,16 +26,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymentModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 const paymentSchema = new mongoose_1.Schema({
-    productName: String,
     membershipType: String,
     term: String,
     paymentMethod: String,
     collected: Number,
     change: Number,
     total: Number,
-    quantity: Number,
     createdAt: String,
     memberId: String,
+    products: mongoose_1.Schema.Types.Mixed,
 });
 exports.PaymentModel = mongoose_1.default.model("payment", paymentSchema);
 //# sourceMappingURL=PaymentModel.js.map
