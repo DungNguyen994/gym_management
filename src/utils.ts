@@ -1,10 +1,19 @@
 import { MEMBERSHIP_STATUS } from "./constant";
-import { MemberModel } from "./models/MemberModel";
+import { MembershipModel } from "./models/MembershipModel";
 import { Membership } from "./types";
 
 export const updateRemainingDays = async () => {
-  const activeMembers = await MemberModel.find({ "memberships.status": "A" });
-  console.log(activeMembers);
+  const activateMemberships = await MembershipModel.find({
+    status: MEMBERSHIP_STATUS.ACTIVE,
+  }).exec();
+  activateMemberships.forEach((membership) => {
+    if (membership.remainingDays && membership.remainingDays > 0) {
+      membership.remainingDays = Number(membership.remainingDays) - 1;
+    } else {
+      membership.status = MEMBERSHIP_STATUS.EXPIRED;
+    }
+    membership.save();
+  });
 };
 
 export const getMembershipStatus = (memberships: Membership[]) => {

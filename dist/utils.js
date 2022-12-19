@@ -11,10 +11,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getRemainingDays = exports.getMembershipStatus = exports.updateRemainingDays = void 0;
 const constant_1 = require("./constant");
-const MemberModel_1 = require("./models/MemberModel");
+const MembershipModel_1 = require("./models/MembershipModel");
 const updateRemainingDays = () => __awaiter(void 0, void 0, void 0, function* () {
-    const activeMembers = yield MemberModel_1.MemberModel.find({ "memberships.status": "A" });
-    console.log(activeMembers);
+    const activateMemberships = yield MembershipModel_1.MembershipModel.find({
+        status: constant_1.MEMBERSHIP_STATUS.ACTIVE,
+    }).exec();
+    activateMemberships.forEach((membership) => {
+        if (membership.remainingDays && membership.remainingDays > 0) {
+            membership.remainingDays = Number(membership.remainingDays) - 1;
+        }
+        else {
+            membership.status = constant_1.MEMBERSHIP_STATUS.EXPIRED;
+        }
+        membership.save();
+    });
 });
 exports.updateRemainingDays = updateRemainingDays;
 const getMembershipStatus = (memberships) => {
