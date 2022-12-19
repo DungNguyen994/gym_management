@@ -44,9 +44,11 @@ const express_jwt_1 = require("express-jwt");
 const http_1 = __importDefault(require("http"));
 const mongoose_1 = __importDefault(require("mongoose"));
 require("reflect-metadata");
+const node_schedule_1 = require("node-schedule");
 const corsOptions_1 = require("./config/corsOptions");
 const resolvers_1 = require("./resolvers");
 const typeDefs_1 = require("./typeDefs");
+const utils_1 = require("./utils");
 dotenv.config();
 function startApolloServer() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -75,6 +77,9 @@ function startApolloServer() {
             ],
         });
         yield server.start();
+        (0, node_schedule_1.scheduleJob)("00 00 00 * * *", () => {
+            (0, utils_1.updateRemainingDays)();
+        });
         server.applyMiddleware({ app, cors: corsOptions_1.corsOptions });
         yield new Promise((resolve) => httpServer.listen({ port: process.env.PORT }, resolve));
         console.log(`🚀 Server ready at http://localhost:${process.env.PORT}${server.graphqlPath}`);

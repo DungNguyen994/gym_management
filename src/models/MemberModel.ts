@@ -10,6 +10,5 @@ const memberSchema = new Schema({
   note: String,
   gender: String,
   birthDate: String,
-  memberships: Schema.Types.Mixed,
 });
 export const MemberModel = mongoose.model("member", memberSchema);

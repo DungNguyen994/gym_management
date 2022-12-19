@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Payment = exports.ListInventoryResponse = exports.InventoryResponse = exports.StockIn = exports.Inventory = exports.ProductResponse = exports.ListProductResponse = exports.Product = exports.AddProductInput = exports.AddMemberInput = exports.ListMemberResponse = exports.MemberResponse = exports.ListUserResponse = exports.TextResponse = exports.Member = exports.UserResponse = exports.User = exports.Error = void 0;
+exports.Membership = exports.Payment = exports.ListInventoryResponse = exports.InventoryResponse = exports.StockIn = exports.Inventory = exports.ProductResponse = exports.ListProductResponse = exports.Product = exports.AddProductInput = exports.AddMemberInput = exports.ListMemberResponse = exports.MemberResponse = exports.ListUserResponse = exports.TextResponse = exports.Member = exports.UserResponse = exports.User = exports.Error = void 0;
 const type_graphql_1 = require("type-graphql");
 const constant_1 = require("./constant");
 let User = class User {
@@ -173,35 +173,48 @@ __decorate([
 PaymentInput = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], PaymentInput);
-let MembershipInput = class MembershipInput {
+let Membership = class Membership {
 };
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
-], MembershipInput.prototype, "membershipType", void 0);
+], Membership.prototype, "id", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
-], MembershipInput.prototype, "startDate", void 0);
+], Membership.prototype, "membershipType", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
-], MembershipInput.prototype, "endDate", void 0);
+], Membership.prototype, "startDate", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
-], MembershipInput.prototype, "term", void 0);
+], Membership.prototype, "endDate", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
-], MembershipInput.prototype, "status", void 0);
+], Membership.prototype, "term", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
-], MembershipInput.prototype, "holdDate", void 0);
-MembershipInput = __decorate([
+], Membership.prototype, "status", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Membership.prototype, "holdDate", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Membership.prototype, "memberId", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Number)
+], Membership.prototype, "remainingDays", void 0);
+Membership = __decorate([
     (0, type_graphql_1.ObjectType)()
-], MembershipInput);
+], Membership);
+exports.Membership = Membership;
 let Member = class Member {
 };
 __decorate([
@@ -246,8 +259,24 @@ __decorate([
 ], Member.prototype, "photo", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Member.prototype, "status", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Member.prototype, "currentMembershipType", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Number)
+], Member.prototype, "remainingDays", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
     __metadata("design:type", Array)
 ], Member.prototype, "memberships", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Membership)
+], Member.prototype, "newMembership", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", PaymentInput)
@@ -296,7 +325,7 @@ __decorate([
 ], AddMemberInput.prototype, "photo", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
-    __metadata("design:type", MembershipInput)
+    __metadata("design:type", Membership)
 ], AddMemberInput.prototype, "membership", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),

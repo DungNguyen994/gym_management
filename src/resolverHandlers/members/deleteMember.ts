@@ -1,3 +1,4 @@
+import { MembershipModel } from "../../models/MembershipModel";
 import {
   NoPermissionError,
   UnauthorizedError,
@@ -16,6 +17,7 @@ export const deleteMemberHandler = async (
   if (role === User_Role.member) return { errors: NoPermissionError };
   else {
     await MemberModel.findByIdAndDelete(args.id);
+    await MembershipModel.deleteMany({ memberId: args.id });
     return { data: "Delete Member Successfully" };
   }
 };

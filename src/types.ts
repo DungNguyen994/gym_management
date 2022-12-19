@@ -71,6 +71,7 @@ class TextResponse {
   @Field()
   data?: string;
 }
+
 @ObjectType()
 class Payment {
   @Field()
@@ -108,7 +109,9 @@ class PaymentInput {
   memberId: string;
 }
 @ObjectType()
-class MembershipInput {
+class Membership {
+  @Field()
+  readonly id?: string;
   @Field()
   membershipType: string;
   @Field()
@@ -121,6 +124,10 @@ class MembershipInput {
   status: string;
   @Field()
   holdDate: string;
+  @Field()
+  memberId: string;
+  @Field()
+  remainingDays: number;
 }
 @ObjectType()
 class Member {
@@ -145,9 +152,17 @@ class Member {
   @Field()
   photo: string;
   @Field()
-  memberships: MembershipInput[];
+  status?: string;
   @Field()
-  payment: PaymentInput;
+  currentMembershipType?: string;
+  @Field()
+  remainingDays?: number;
+  @Field()
+  memberships?: Membership[];
+  @Field()
+  newMembership?: Membership;
+  @Field()
+  payment?: PaymentInput;
 }
 @ObjectType()
 class AddMemberInput {
@@ -170,7 +185,7 @@ class AddMemberInput {
   @Field()
   photo: string;
   @Field()
-  membership: MembershipInput;
+  membership: Membership;
   @Field()
   payment: PaymentInput;
 }
@@ -304,4 +319,5 @@ export {
   InventoryResponse,
   ListInventoryResponse,
   Payment,
+  Membership,
 };

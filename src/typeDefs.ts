@@ -65,6 +65,7 @@ export const typeDefs = gql`
     paymentMethod: String!
   }
   type Membership {
+    id: ID
     membershipType: String!
     startDate: String!
     endDate: String!
@@ -97,8 +98,11 @@ export const typeDefs = gql`
     address: String
     note: String
     gender: String
-    memberships: [Membership!]!
     photo: String
+    status: String
+    currentMembershipType: String
+    remainingDays: Int
+    memberships: [Membership]
   }
 
   type Product {
@@ -201,12 +205,12 @@ export const typeDefs = gql`
       note: String
       gender: String
       photo: String
-      memberships: [NewMembership]
+      newMembership: NewMembership
       payment: NewPayment
     ): TextResponse
     deleteMember(id: ID!): TextResponse
-    holdMembership(memberId: ID!, startDate: String!): TextResponse
-    activateMembership(memberId: ID!, startDate: String!): TextResponse
+    holdMembership(id: ID!): TextResponse
+    activateMembership(id: ID!, memberId: ID!): TextResponse
     addProduct(
       productType: String!
       productName: String!

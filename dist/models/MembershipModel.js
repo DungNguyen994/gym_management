@@ -23,18 +23,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MemberModel = void 0;
+exports.MembershipModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-const memberSchema = new mongoose_1.Schema({
-    firstName: String,
-    lastName: String,
-    phoneNumber: String,
-    address: String,
-    photo: String,
-    email: String,
-    note: String,
-    gender: String,
-    birthDate: String,
+const membershipSchema = new mongoose_1.Schema({
+    membershipType: String,
+    term: String,
+    startDate: String,
+    endDate: String,
+    status: String,
+    holdDate: String,
+    remainingDays: Number,
+    memberId: String,
 });
-exports.MemberModel = mongoose_1.default.model("member", memberSchema);
-//# sourceMappingURL=MemberModel.js.map
+exports.MembershipModel = mongoose_1.default.model("membership", membershipSchema);
+//# sourceMappingURL=MembershipModel.js.map

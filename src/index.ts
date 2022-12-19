@@ -10,9 +10,11 @@ import { expressjwt, Request } from "express-jwt";
 import http from "http";
 import mongoose from "mongoose";
 import "reflect-metadata";
+import { scheduleJob } from "node-schedule";
 import { corsOptions } from "./config/corsOptions";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./typeDefs";
+import { updateRemainingDays } from "./utils";
 dotenv.config();
 async function startApolloServer() {
   const app = express();
@@ -44,6 +46,10 @@ async function startApolloServer() {
     ],
   });
   await server.start();
+  scheduleJob("00 00 00 * * *", () => {
+    updateRemainingDays();
+  });
+
   server.applyMiddleware({ app, cors: corsOptions });
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: process.env.PORT }, resolve)

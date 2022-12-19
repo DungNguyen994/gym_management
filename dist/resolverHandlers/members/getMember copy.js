@@ -9,21 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteMemberHandler = void 0;
-const MembershipModel_1 = require("../../models/MembershipModel");
+exports.getMemberHandler = void 0;
 const constant_1 = require("../../constant");
 const MemberModel_1 = require("../../models/MemberModel");
-const deleteMemberHandler = (_parents, args, { user }) => __awaiter(void 0, void 0, void 0, function* () {
+const getMemberHandler = (_parents, args, { user }) => __awaiter(void 0, void 0, void 0, function* () {
     if (!user)
         return { errors: constant_1.UnauthorizedError };
     const { role } = user;
     if (role === constant_1.User_Role.member)
         return { errors: constant_1.NoPermissionError };
     else {
-        yield MemberModel_1.MemberModel.findByIdAndDelete(args.id);
-        yield MembershipModel_1.MembershipModel.deleteMany({ memberId: args.id });
-        return { data: "Delete Member Successfully" };
+        const member = (yield MemberModel_1.MemberModel.findById(args.id));
+        return { data: member };
     }
 });
-exports.deleteMemberHandler = deleteMemberHandler;
-//# sourceMappingURL=deleteMember.js.map
+exports.getMemberHandler = getMemberHandler;
+//# sourceMappingURL=getMember%20copy.js.map
