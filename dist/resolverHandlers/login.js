@@ -42,7 +42,7 @@ const loginHandler = (_parents, args, { res }) => __awaiter(void 0, void 0, void
         role: user.role,
         fullName: `${user.firstName} ${user.lastName}`,
     };
-    const accessToken = (0, jsonwebtoken_1.sign)({ user: userInfo }, process.env.ACCESS_TOKEN_SECRET || "", { expiresIn: "10m" });
+    const accessToken = (0, jsonwebtoken_1.sign)({ user: userInfo }, process.env.ACCESS_TOKEN_SECRET || "", { expiresIn: "1h" });
     const refreshToken = (0, jsonwebtoken_1.sign)({ user: userInfo }, process.env.REFRESH_TOKEN_SECRET || "", { expiresIn: "1d" });
     yield user.updateOne({ refreshToken });
     res.cookie("jwt", refreshToken, {

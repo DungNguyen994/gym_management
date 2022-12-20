@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Membership = exports.Payment = exports.ListInventoryResponse = exports.InventoryResponse = exports.StockIn = exports.Inventory = exports.ProductResponse = exports.ListProductResponse = exports.Product = exports.AddProductInput = exports.AddMemberInput = exports.ListMemberResponse = exports.MemberResponse = exports.ListUserResponse = exports.TextResponse = exports.Member = exports.UserResponse = exports.User = exports.Error = void 0;
+exports.VisitHistory = exports.VisitHistoryResponse = exports.Membership = exports.Payment = exports.ListInventoryResponse = exports.InventoryResponse = exports.StockIn = exports.Inventory = exports.ProductResponse = exports.ListProductResponse = exports.Product = exports.AddProductInput = exports.AddMemberInput = exports.ListMemberResponse = exports.MemberResponse = exports.ListUserResponse = exports.TextResponse = exports.Member = exports.UserResponse = exports.User = exports.Error = void 0;
 const type_graphql_1 = require("type-graphql");
 const constant_1 = require("./constant");
 let User = class User {
@@ -102,6 +102,42 @@ TextResponse = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], TextResponse);
 exports.TextResponse = TextResponse;
+let VisitHistory = class VisitHistory {
+};
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], VisitHistory.prototype, "id", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], VisitHistory.prototype, "memberId", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], VisitHistory.prototype, "date", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], VisitHistory.prototype, "memberName", void 0);
+VisitHistory = __decorate([
+    (0, type_graphql_1.ObjectType)()
+], VisitHistory);
+exports.VisitHistory = VisitHistory;
+let VisitHistoryResponse = class VisitHistoryResponse {
+};
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Error)
+], VisitHistoryResponse.prototype, "errors", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Array)
+], VisitHistoryResponse.prototype, "data", void 0);
+VisitHistoryResponse = __decorate([
+    (0, type_graphql_1.ObjectType)()
+], VisitHistoryResponse);
+exports.VisitHistoryResponse = VisitHistoryResponse;
 let Payment = class Payment {
 };
 __decorate([

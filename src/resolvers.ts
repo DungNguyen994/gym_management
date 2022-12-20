@@ -21,6 +21,8 @@ import { updateProductHandler } from "./resolverHandlers/products/updateProduct"
 import { refreshTokenHandler } from "./resolverHandlers/refreshTokenHandler";
 import { registerHandler } from "./resolverHandlers/register";
 import { removeUserHandler } from "./resolverHandlers/removeUser";
+import { checkInHandler } from "./resolverHandlers/visitHistory/checkIn";
+import { getVisitHistoryHandler } from "./resolverHandlers/visitHistory/getVisitHistory";
 import { User, UserResponse } from "./types";
 
 interface MyContext {
@@ -47,6 +49,7 @@ export const resolvers = {
     products: getProductsHandler,
     product: getProductHandler,
     inventory: getInventoryHandler,
+    visitHistory: getVisitHistoryHandler,
   },
   Mutation: {
     register: registerHandler,
@@ -62,5 +65,6 @@ export const resolvers = {
     updateProduct: updateProductHandler,
     stockIn: stockInHandler,
     addPayment: addPaymentHandler,
+    checkIn: checkInHandler,
   },
 };

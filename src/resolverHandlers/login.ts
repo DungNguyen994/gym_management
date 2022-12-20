@@ -38,7 +38,7 @@ export const loginHandler = async (
   const accessToken = sign(
     { user: userInfo },
     process.env.ACCESS_TOKEN_SECRET || "",
-    { expiresIn: "10m" }
+    { expiresIn: "1h" }
   );
   const refreshToken = sign(
     { user: userInfo },

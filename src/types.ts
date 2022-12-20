@@ -71,6 +71,24 @@ class TextResponse {
   @Field()
   data?: string;
 }
+@ObjectType()
+class VisitHistory {
+  @Field()
+  readonly id?: string;
+  @Field()
+  readonly memberId: string;
+  @Field()
+  readonly date: string;
+  @Field()
+  memberName?: string;
+}
+@ObjectType()
+class VisitHistoryResponse {
+  @Field()
+  errors?: Error;
+  @Field()
+  data?: VisitHistory[];
+}
 
 @ObjectType()
 class Payment {
@@ -239,7 +257,7 @@ class Product {
   @Field()
   readonly productId?: string;
   @Field()
-  readonly inventoryId: string;
+  readonly inventoryId?: string;
   @Field()
   productType: string;
   @Field()
@@ -249,7 +267,7 @@ class Product {
   @Field()
   unitPrice: number;
   @Field()
-  buyQuantity: number;
+  buyQuantity?: number;
   @Field()
   discountPercent: number;
   @Field()
@@ -320,4 +338,6 @@ export {
   ListInventoryResponse,
   Payment,
   Membership,
+  VisitHistoryResponse,
+  VisitHistory,
 };

@@ -33,6 +33,8 @@ const updateProduct_1 = require("./resolverHandlers/products/updateProduct");
 const refreshTokenHandler_1 = require("./resolverHandlers/refreshTokenHandler");
 const register_1 = require("./resolverHandlers/register");
 const removeUser_1 = require("./resolverHandlers/removeUser");
+const checkIn_1 = require("./resolverHandlers/visitHistory/checkIn");
+const getVisitHistory_1 = require("./resolverHandlers/visitHistory/getVisitHistory");
 exports.resolvers = {
     Query: {
         users: getUsers_1.getUsers,
@@ -49,6 +51,7 @@ exports.resolvers = {
         products: getProducts_1.getProductsHandler,
         product: getProduct_1.getProductHandler,
         inventory: getInventory_1.getInventoryHandler,
+        visitHistory: getVisitHistory_1.getVisitHistoryHandler,
     },
     Mutation: {
         register: register_1.registerHandler,
@@ -64,6 +67,7 @@ exports.resolvers = {
         updateProduct: updateProduct_1.updateProductHandler,
         stockIn: stockIn_1.stockInHandler,
         addPayment: addPayment_1.addPaymentHandler,
+        checkIn: checkIn_1.checkInHandler,
     },
 };
 //# sourceMappingURL=resolvers.js.map

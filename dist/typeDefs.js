@@ -159,6 +159,16 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     data: String
   }
 
+  type VisitHistory {
+    id: ID
+    memberId: ID
+    date: String
+    memberName: String
+  }
+  type VisitHistoryResponse {
+    errors: Error
+    data: [VisitHistory]
+  }
   type Query {
     users: ListUserResponse
     user(username: String!): UserResponse
@@ -170,6 +180,7 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     products: ListProductResponse
     product(id: ID!): ProductResponse
     inventory: ListInventoryResponse
+    visitHistory: VisitHistoryResponse
   }
 
   type Mutation {
@@ -240,6 +251,7 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
       collected: Float
       total: Float!
     ): TextResponse
+    checkIn(memberId: ID!): TextResponse
   }
 `;
 //# sourceMappingURL=typeDefs.js.map
