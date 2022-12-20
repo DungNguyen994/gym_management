@@ -101,6 +101,12 @@ class Payment {
   @Field()
   memberId?: string;
   @Field()
+  memberName?: string;
+  @Field()
+  membershipType?: string;
+  @Field()
+  term?: string;
+  @Field()
   collected: number;
   @Field()
   change: number;
@@ -315,6 +321,13 @@ class ListProductResponse {
   @Field()
   errors?: Error;
 }
+@ObjectType()
+class ListPaymentResponse {
+  @Field()
+  data?: Payment[];
+  @Field()
+  errors?: Error;
+}
 export {
   Error,
   UserNameAndPasswordInput,
@@ -340,4 +353,5 @@ export {
   Membership,
   VisitHistoryResponse,
   VisitHistory,
+  ListPaymentResponse,
 };

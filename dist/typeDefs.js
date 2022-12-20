@@ -54,18 +54,6 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     quantity: Int
     paymentMethod: String!
   }
-  type Payment {
-    productId: ID
-    productName: String!
-    createdAt: String!
-    unitPrice: Float!
-    total: Float!
-    collected: Float!
-    change: Float!
-    term: String
-    quantity: Int
-    paymentMethod: String!
-  }
   type Membership {
     id: ID
     membershipType: String!
@@ -109,12 +97,29 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
 
   type Product {
     id: ID
+    productId: ID
+    inventoryId: ID
     productType: String!
     productName: String!
     unitPrice: Float!
     discountPercent: Float
     supplier: String
     photo: String
+    buyQuantity: Int
+  }
+
+  type Payment {
+    id: ID
+    memberId: ID
+    products: [Product]
+    memberName: String
+    membershipType: String
+    createdAt: String
+    total: Float!
+    collected: Float!
+    change: Float!
+    term: String
+    paymentMethod: String!
   }
 
   type Inventory {
@@ -165,10 +170,17 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     date: String
     memberName: String
   }
+
   type VisitHistoryResponse {
     errors: Error
     data: [VisitHistory]
   }
+
+  type PaymentsResponse {
+    errors: Error
+    data: [Payment]
+  }
+
   type Query {
     users: ListUserResponse
     user(username: String!): UserResponse
@@ -181,6 +193,7 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     product(id: ID!): ProductResponse
     inventory: ListInventoryResponse
     visitHistory: VisitHistoryResponse
+    payments: PaymentsResponse
   }
 
   type Mutation {

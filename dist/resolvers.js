@@ -24,6 +24,7 @@ const getMember_1 = require("./resolverHandlers/members/getMember");
 const getMembers_1 = require("./resolverHandlers/members/getMembers");
 const holdMembership_1 = require("./resolverHandlers/members/holdMembership");
 const updateMember_1 = require("./resolverHandlers/members/updateMember");
+const getPayments_1 = require("./resolverHandlers/payment/getPayments");
 const addPayment_1 = require("./resolverHandlers/pos/addPayment");
 const addProduct_1 = require("./resolverHandlers/products/addProduct");
 const deleteProduct_1 = require("./resolverHandlers/products/deleteProduct");
@@ -52,6 +53,7 @@ exports.resolvers = {
         product: getProduct_1.getProductHandler,
         inventory: getInventory_1.getInventoryHandler,
         visitHistory: getVisitHistory_1.getVisitHistoryHandler,
+        payments: getPayments_1.getPaymentsHandler,
     },
     Mutation: {
         register: register_1.registerHandler,

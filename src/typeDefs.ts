@@ -52,18 +52,6 @@ export const typeDefs = gql`
     quantity: Int
     paymentMethod: String!
   }
-  type Payment {
-    productId: ID
-    productName: String!
-    createdAt: String!
-    unitPrice: Float!
-    total: Float!
-    collected: Float!
-    change: Float!
-    term: String
-    quantity: Int
-    paymentMethod: String!
-  }
   type Membership {
     id: ID
     membershipType: String!
@@ -107,12 +95,29 @@ export const typeDefs = gql`
 
   type Product {
     id: ID
+    productId: ID
+    inventoryId: ID
     productType: String!
     productName: String!
     unitPrice: Float!
     discountPercent: Float
     supplier: String
     photo: String
+    buyQuantity: Int
+  }
+
+  type Payment {
+    id: ID
+    memberId: ID
+    products: [Product]
+    memberName: String
+    membershipType: String
+    createdAt: String
+    total: Float!
+    collected: Float!
+    change: Float!
+    term: String
+    paymentMethod: String!
   }
 
   type Inventory {
@@ -163,10 +168,17 @@ export const typeDefs = gql`
     date: String
     memberName: String
   }
+
   type VisitHistoryResponse {
     errors: Error
     data: [VisitHistory]
   }
+
+  type PaymentsResponse {
+    errors: Error
+    data: [Payment]
+  }
+
   type Query {
     users: ListUserResponse
     user(username: String!): UserResponse
@@ -179,6 +191,7 @@ export const typeDefs = gql`
     product(id: ID!): ProductResponse
     inventory: ListInventoryResponse
     visitHistory: VisitHistoryResponse
+    payments: PaymentsResponse
   }
 
   type Mutation {

@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VisitHistory = exports.VisitHistoryResponse = exports.Membership = exports.Payment = exports.ListInventoryResponse = exports.InventoryResponse = exports.StockIn = exports.Inventory = exports.ProductResponse = exports.ListProductResponse = exports.Product = exports.AddProductInput = exports.AddMemberInput = exports.ListMemberResponse = exports.MemberResponse = exports.ListUserResponse = exports.TextResponse = exports.Member = exports.UserResponse = exports.User = exports.Error = void 0;
+exports.ListPaymentResponse = exports.VisitHistory = exports.VisitHistoryResponse = exports.Membership = exports.Payment = exports.ListInventoryResponse = exports.InventoryResponse = exports.StockIn = exports.Inventory = exports.ProductResponse = exports.ListProductResponse = exports.Product = exports.AddProductInput = exports.AddMemberInput = exports.ListMemberResponse = exports.MemberResponse = exports.ListUserResponse = exports.TextResponse = exports.Member = exports.UserResponse = exports.User = exports.Error = void 0;
 const type_graphql_1 = require("type-graphql");
 const constant_1 = require("./constant");
 let User = class User {
@@ -156,6 +156,18 @@ __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
 ], Payment.prototype, "memberId", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Payment.prototype, "memberName", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Payment.prototype, "membershipType", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Payment.prototype, "term", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", Number)
@@ -587,4 +599,18 @@ ListProductResponse = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], ListProductResponse);
 exports.ListProductResponse = ListProductResponse;
+let ListPaymentResponse = class ListPaymentResponse {
+};
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Array)
+], ListPaymentResponse.prototype, "data", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Error)
+], ListPaymentResponse.prototype, "errors", void 0);
+ListPaymentResponse = __decorate([
+    (0, type_graphql_1.ObjectType)()
+], ListPaymentResponse);
+exports.ListPaymentResponse = ListPaymentResponse;
 //# sourceMappingURL=types.js.map

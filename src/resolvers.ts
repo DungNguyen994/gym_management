@@ -12,6 +12,7 @@ import { getMemberHandler } from "./resolverHandlers/members/getMember";
 import { getMembersHandler } from "./resolverHandlers/members/getMembers";
 import { holdMembershipHandler } from "./resolverHandlers/members/holdMembership";
 import { updateMemberHandler } from "./resolverHandlers/members/updateMember";
+import { getPaymentsHandler } from "./resolverHandlers/payment/getPayments";
 import { addPaymentHandler } from "./resolverHandlers/pos/addPayment";
 import { addProductHandler } from "./resolverHandlers/products/addProduct";
 import { deleteProductHandler } from "./resolverHandlers/products/deleteProduct";
@@ -50,6 +51,7 @@ export const resolvers = {
     product: getProductHandler,
     inventory: getInventoryHandler,
     visitHistory: getVisitHistoryHandler,
+    payments: getPaymentsHandler,
   },
   Mutation: {
     register: registerHandler,
