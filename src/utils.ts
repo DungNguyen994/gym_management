@@ -14,6 +14,7 @@ export const updateRemainingDays = async () => {
     }
     membership.save();
   });
+  console.log("Updated remaining days for memberships successfully");
 };
 
 export const getMembershipStatus = (memberships: Membership[]) => {

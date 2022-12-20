@@ -25,6 +25,7 @@ const updateRemainingDays = () => __awaiter(void 0, void 0, void 0, function* ()
         }
         membership.save();
     });
+    console.log("Updated remaining days for memberships successfully");
 });
 exports.updateRemainingDays = updateRemainingDays;
 const getMembershipStatus = (memberships) => {
