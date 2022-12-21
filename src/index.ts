@@ -46,7 +46,7 @@ async function startApolloServer() {
     ],
   });
   await server.start();
-  scheduleJob("*/1 * *", () => {
+  scheduleJob("00 * * *", () => {
     updateRemainingDays();
   });
 
