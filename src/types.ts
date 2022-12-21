@@ -229,6 +229,15 @@ class AddProductInput {
   supplier: string;
 }
 @ObjectType()
+class AddMembershipTypeInput {
+  @Field()
+  name: string;
+  @Field()
+  pricePerMonth: number;
+  @Field()
+  discountPercent: number;
+}
+@ObjectType()
 class StockIn {
   @Field()
   productId: string;
@@ -321,6 +330,22 @@ class ListProductResponse {
   @Field()
   errors?: Error;
 }
+class MembershipType {
+  @Field()
+  readonly id: string;
+  @Field()
+  name: string;
+  @Field()
+  pricePerMonth: number;
+  @Field()
+  discountPercent: number;
+}
+class ListMembershipTypeResponse {
+  @Field()
+  data?: MembershipType[];
+  @Field()
+  errors?: Error;
+}
 @ObjectType()
 class ListPaymentResponse {
   @Field()
@@ -354,4 +379,7 @@ export {
   VisitHistoryResponse,
   VisitHistory,
   ListPaymentResponse,
+  AddMembershipTypeInput,
+  ListMembershipTypeResponse,
+  MembershipType,
 };
