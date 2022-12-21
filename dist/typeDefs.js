@@ -181,6 +181,18 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     data: [Payment]
   }
 
+  type MembershipType {
+    id: ID!
+    name: String!
+    pricePerMonth: Float!
+    discountPercent: Float!
+  }
+
+  type MembershipTypeResponse {
+    errors: Error
+    data: [MembershipType]
+  }
+
   type Query {
     users: ListUserResponse
     user(username: String!): UserResponse
@@ -194,6 +206,7 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     inventory: ListInventoryResponse
     visitHistory: VisitHistoryResponse
     payments: PaymentsResponse
+    membershipTypes: MembershipTypeResponse
   }
 
   type Mutation {
@@ -265,6 +278,18 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
       total: Float!
     ): TextResponse
     checkIn(memberId: ID!): TextResponse
+    addMembershipType(
+      name: String!
+      pricePerMonth: Float!
+      discountPercent: Float!
+    ): TextResponse
+    deleteMembershipType(id: ID!): TextResponse
+    updateMembershipType(
+      id: ID!
+      name: String!
+      pricePerMonth: Float!
+      discountPercent: Float!
+    ): TextResponse
   }
 `;
 //# sourceMappingURL=typeDefs.js.map

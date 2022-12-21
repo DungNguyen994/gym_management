@@ -77,7 +77,7 @@ function startApolloServer() {
             ],
         });
         yield server.start();
-        (0, node_schedule_1.scheduleJob)("0 * * *", () => {
+        (0, node_schedule_1.scheduleJob)("*/1 * *", () => {
             (0, utils_1.updateRemainingDays)();
         });
         server.applyMiddleware({ app, cors: corsOptions_1.corsOptions });

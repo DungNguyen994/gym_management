@@ -24,6 +24,9 @@ const getMember_1 = require("./resolverHandlers/members/getMember");
 const getMembers_1 = require("./resolverHandlers/members/getMembers");
 const holdMembership_1 = require("./resolverHandlers/members/holdMembership");
 const updateMember_1 = require("./resolverHandlers/members/updateMember");
+const addMembershipType_1 = require("./resolverHandlers/membershipTypes/addMembershipType");
+const deleteMembershipType_1 = require("./resolverHandlers/membershipTypes/deleteMembershipType");
+const updateMembershipType_1 = require("./resolverHandlers/membershipTypes/updateMembershipType");
 const getPayments_1 = require("./resolverHandlers/payment/getPayments");
 const addPayment_1 = require("./resolverHandlers/pos/addPayment");
 const addProduct_1 = require("./resolverHandlers/products/addProduct");
@@ -70,6 +73,9 @@ exports.resolvers = {
         stockIn: stockIn_1.stockInHandler,
         addPayment: addPayment_1.addPaymentHandler,
         checkIn: checkIn_1.checkInHandler,
+        addMembershipType: addMembershipType_1.addMembershipTypeHandler,
+        deleteMembershipType: deleteMembershipType_1.deleteMembershipTypeHandler,
+        updateMembershipType: updateMembershipType_1.updateMembershipTypeHandler,
     },
 };
 //# sourceMappingURL=resolvers.js.map

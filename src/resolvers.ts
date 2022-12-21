@@ -12,6 +12,9 @@ import { getMemberHandler } from "./resolverHandlers/members/getMember";
 import { getMembersHandler } from "./resolverHandlers/members/getMembers";
 import { holdMembershipHandler } from "./resolverHandlers/members/holdMembership";
 import { updateMemberHandler } from "./resolverHandlers/members/updateMember";
+import { addMembershipTypeHandler } from "./resolverHandlers/membershipTypes/addMembershipType";
+import { deleteMembershipTypeHandler } from "./resolverHandlers/membershipTypes/deleteMembershipType";
+import { updateMembershipTypeHandler } from "./resolverHandlers/membershipTypes/updateMembershipType";
 import { getPaymentsHandler } from "./resolverHandlers/payment/getPayments";
 import { addPaymentHandler } from "./resolverHandlers/pos/addPayment";
 import { addProductHandler } from "./resolverHandlers/products/addProduct";
@@ -68,5 +71,8 @@ export const resolvers = {
     stockIn: stockInHandler,
     addPayment: addPaymentHandler,
     checkIn: checkInHandler,
+    addMembershipType: addMembershipTypeHandler,
+    deleteMembershipType: deleteMembershipTypeHandler,
+    updateMembershipType: updateMembershipTypeHandler,
   },
 };

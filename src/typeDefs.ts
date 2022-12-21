@@ -179,6 +179,18 @@ export const typeDefs = gql`
     data: [Payment]
   }
 
+  type MembershipType {
+    id: ID!
+    name: String!
+    pricePerMonth: Float!
+    discountPercent: Float!
+  }
+
+  type MembershipTypeResponse {
+    errors: Error
+    data: [MembershipType]
+  }
+
   type Query {
     users: ListUserResponse
     user(username: String!): UserResponse
@@ -192,6 +204,7 @@ export const typeDefs = gql`
     inventory: ListInventoryResponse
     visitHistory: VisitHistoryResponse
     payments: PaymentsResponse
+    membershipTypes: MembershipTypeResponse
   }
 
   type Mutation {
@@ -263,5 +276,17 @@ export const typeDefs = gql`
       total: Float!
     ): TextResponse
     checkIn(memberId: ID!): TextResponse
+    addMembershipType(
+      name: String!
+      pricePerMonth: Float!
+      discountPercent: Float!
+    ): TextResponse
+    deleteMembershipType(id: ID!): TextResponse
+    updateMembershipType(
+      id: ID!
+      name: String!
+      pricePerMonth: Float!
+      discountPercent: Float!
+    ): TextResponse
   }
 `;
