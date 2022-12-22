@@ -17,6 +17,6 @@ export const addMembershipTypeHandler = async (
   else {
     const membershipType = new MembershipTypeModel(args);
     await membershipType.save();
-    return { data: "Added Membership Successfully" };
+    return { data: "Added Membership Type Successfully" };
   }
 };

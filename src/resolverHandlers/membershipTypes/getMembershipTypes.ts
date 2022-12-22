@@ -21,6 +21,7 @@ export const getMembershipTypesHandler = async (
   else {
     const membershipTypes =
       (await MembershipTypeModel.find().exec()) as MembershipType[];
+
     return { data: membershipTypes };
   }
 };

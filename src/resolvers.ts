@@ -14,6 +14,7 @@ import { holdMembershipHandler } from "./resolverHandlers/members/holdMembership
 import { updateMemberHandler } from "./resolverHandlers/members/updateMember";
 import { addMembershipTypeHandler } from "./resolverHandlers/membershipTypes/addMembershipType";
 import { deleteMembershipTypeHandler } from "./resolverHandlers/membershipTypes/deleteMembershipType";
+import { getMembershipTypesHandler } from "./resolverHandlers/membershipTypes/getMembershipTypes";
 import { updateMembershipTypeHandler } from "./resolverHandlers/membershipTypes/updateMembershipType";
 import { getPaymentsHandler } from "./resolverHandlers/payment/getPayments";
 import { addPaymentHandler } from "./resolverHandlers/pos/addPayment";
@@ -55,6 +56,7 @@ export const resolvers = {
     inventory: getInventoryHandler,
     visitHistory: getVisitHistoryHandler,
     payments: getPaymentsHandler,
+    membershipTypes: getMembershipTypesHandler,
   },
   Mutation: {
     register: registerHandler,

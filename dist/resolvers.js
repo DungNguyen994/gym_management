@@ -26,6 +26,7 @@ const holdMembership_1 = require("./resolverHandlers/members/holdMembership");
 const updateMember_1 = require("./resolverHandlers/members/updateMember");
 const addMembershipType_1 = require("./resolverHandlers/membershipTypes/addMembershipType");
 const deleteMembershipType_1 = require("./resolverHandlers/membershipTypes/deleteMembershipType");
+const getMembershipTypes_1 = require("./resolverHandlers/membershipTypes/getMembershipTypes");
 const updateMembershipType_1 = require("./resolverHandlers/membershipTypes/updateMembershipType");
 const getPayments_1 = require("./resolverHandlers/payment/getPayments");
 const addPayment_1 = require("./resolverHandlers/pos/addPayment");
@@ -57,6 +58,7 @@ exports.resolvers = {
         inventory: getInventory_1.getInventoryHandler,
         visitHistory: getVisitHistory_1.getVisitHistoryHandler,
         payments: getPayments_1.getPaymentsHandler,
+        membershipTypes: getMembershipTypes_1.getMembershipTypesHandler,
     },
     Mutation: {
         register: register_1.registerHandler,

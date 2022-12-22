@@ -21,7 +21,7 @@ const addMembershipTypeHandler = (_parents, args, { user }) => __awaiter(void 0,
     else {
         const membershipType = new MembershipTypes_1.MembershipTypeModel(args);
         yield membershipType.save();
-        return { data: "Added Membership Successfully" };
+        return { data: "Added Membership Type Successfully" };
     }
 });
 exports.addMembershipTypeHandler = addMembershipTypeHandler;
