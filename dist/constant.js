@@ -28,7 +28,7 @@ const UnauthorizedError = {
 exports.UnauthorizedError = UnauthorizedError;
 exports.TOKEN_EXPIRE_TIME = 60 * 60;
 exports.ONE_DAY_TIME_IN_MS = 24 * 60 * 60 * 1000;
-exports.DATE_FORMAT = "YYYY/MM/DD HH:mm:ss";
+exports.DATE_FORMAT = "MMMM DD, YYYY HH:mm:ss";
 exports.MEMBERSHIP_STATUS = {
     ACTIVE: "A",
     HOLD: "H",

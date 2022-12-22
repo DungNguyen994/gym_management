@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addPaymentHandler = void 0;
 const dayjs_1 = __importDefault(require("dayjs"));
 const constant_1 = require("../../constant");
+const Inventory_1 = require("../../models/Inventory");
 const PaymentModel_1 = require("../../models/PaymentModel");
 const addPaymentHandler = (_parents, args, { user }) => __awaiter(void 0, void 0, void 0, function* () {
     if (!user)
@@ -24,6 +25,20 @@ const addPaymentHandler = (_parents, args, { user }) => __awaiter(void 0, void 0
         return { errors: constant_1.NoPermissionError };
     else {
         const payment = new PaymentModel_1.PaymentModel(Object.assign(Object.assign({}, args), { createdAt: (0, dayjs_1.default)().format(constant_1.DATE_FORMAT) }));
+        const { products } = args;
+        const inventories = yield Inventory_1.InventoryModel.find().exec();
+        inventories.forEach((i) => {
+            products.forEach((product) => {
+                if (product.inventoryId === i.id && product.buyQuantity && i.quantity) {
+                    if (i.quantity > product.buyQuantity)
+                        i.quantity = i.quantity - product.buyQuantity;
+                    else {
+                        i.quantity = 0;
+                    }
+                }
+            });
+            i.save();
+        });
         yield payment.save();
         return { data: "Added Payment Successfully" };
     }
