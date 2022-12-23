@@ -10,5 +10,6 @@ const memberSchema = new Schema({
   note: String,
   gender: String,
   birthDate: String,
+  createdAt: String,
 });
 export const MemberModel = mongoose.model("member", memberSchema);

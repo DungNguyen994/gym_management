@@ -329,6 +329,10 @@ __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", PaymentInput)
 ], Member.prototype, "payment", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], Member.prototype, "createdAt", void 0);
 Member = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], Member);

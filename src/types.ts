@@ -187,6 +187,8 @@ class Member {
   newMembership?: Membership;
   @Field()
   payment?: PaymentInput;
+  @Field()
+  createdAt?: string;
 }
 @ObjectType()
 class AddMemberInput {

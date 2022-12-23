@@ -93,6 +93,7 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     currentMembershipType: String
     remainingDays: Int
     memberships: [Membership]
+    createdAt: String
   }
 
   type Product {

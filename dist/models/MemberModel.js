@@ -35,6 +35,7 @@ const memberSchema = new mongoose_1.Schema({
     note: String,
     gender: String,
     birthDate: String,
+    createdAt: String,
 });
 exports.MemberModel = mongoose_1.default.model("member", memberSchema);
 //# sourceMappingURL=MemberModel.js.map

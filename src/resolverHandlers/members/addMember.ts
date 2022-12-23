@@ -22,7 +22,10 @@ export const addMemberHandler = async (
   if (role === User_Role.member) return { errors: NoPermissionError };
   else {
     dayjs.extend(RelativeTime);
-    const member = new MemberModel(args);
+    const member = new MemberModel({
+      ...args,
+      createdAt: dayjs().format(DATE_FORMAT),
+    });
     const newMember = await member.save();
     const payment = {
       ...args.payment,

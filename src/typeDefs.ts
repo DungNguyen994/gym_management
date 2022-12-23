@@ -91,6 +91,7 @@ export const typeDefs = gql`
     currentMembershipType: String
     remainingDays: Int
     memberships: [Membership]
+    createdAt: String
   }
 
   type Product {
