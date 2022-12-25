@@ -33,7 +33,8 @@ export const loginHandler = async (
   const userInfo = {
     username,
     role: user.role,
-    fullName: `${user.firstName} ${user.lastName}`,
+    firstName: user.firstName,
+    lastName: user.lastName,
   };
   const accessToken = sign(
     { user: userInfo },

@@ -7,6 +7,9 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     username: String
     email: String
     phoneNumber: String
+    firstName: String
+    lastName: String
+    role: String
   }
   input NoteInput {
     message: String

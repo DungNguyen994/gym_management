@@ -30,7 +30,8 @@ export const refreshTokenHandler = async (
   const userInfo = {
     username,
     role,
-    fullName: `${firstName} ${lastName}`,
+    firstName: firstName,
+    lastName: lastName,
   };
   let accessToken;
   verify(

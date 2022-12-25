@@ -5,6 +5,9 @@ export const typeDefs = gql`
     username: String
     email: String
     phoneNumber: String
+    firstName: String
+    lastName: String
+    role: String
   }
   input NoteInput {
     message: String

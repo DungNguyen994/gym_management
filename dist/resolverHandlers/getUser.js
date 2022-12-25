@@ -11,25 +11,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUser = void 0;
 const constant_1 = require("../constant");
-const constant_2 = require("../constant");
-const constant_3 = require("../constant");
-const constant_4 = require("../constant");
 const UserModel_1 = require("../models/UserModel");
 const getUser = (_parents, args, { user }) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!user)
-        return { errors: constant_4.UnauthorizedError };
-    const { username } = args;
-    const { role } = user;
-    if (role !== constant_2.User_Role.admin)
+    const { role } = user.user;
+    if (role !== constant_1.User_Role.admin)
         return { errors: constant_1.NoPermissionError };
     else {
-        const _user = yield UserModel_1.UserModel.find({ username }).exec();
+        const _user = (yield UserModel_1.UserModel.findOne({
+            username: args.username,
+        }).exec());
         if (_user)
-            return { data: user };
+            return { data: _user };
         else
             return {
                 errors: {
-                    type: constant_3.Error_Code.not_found,
+                    type: constant_1.Error_Code.not_found,
                     pointer: "username",
                     message: "username not found",
                 },

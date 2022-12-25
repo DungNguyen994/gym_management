@@ -24,17 +24,16 @@ interface MyContext {
 @ObjectType()
 class User {
   @Field()
-  username: string | undefined;
+  username: string;
   @Field()
-  firstName: string | undefined;
+  firstName?: string;
   @Field()
-  lastName: string | undefined;
+  lastName?: string;
   @Field()
-  phoneNumber: string | undefined;
+  phoneNumber?: string;
   @Field()
-  email: string | undefined;
+  email?: string;
   @Field()
-  password: string;
   role: string;
 }
 

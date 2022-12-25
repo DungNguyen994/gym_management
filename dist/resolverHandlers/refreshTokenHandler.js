@@ -35,7 +35,8 @@ const refreshTokenHandler = (_parents, _args, { req }) => __awaiter(void 0, void
     const userInfo = {
         username,
         role,
-        fullName: `${firstName} ${lastName}`,
+        firstName: firstName,
+        lastName: lastName,
     };
     let accessToken;
     (0, jsonwebtoken_1.verify)(refreshToken, process.env.REFRESH_TOKEN_SECRET || "", (err, decoded) => {

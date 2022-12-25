@@ -1,23 +1,19 @@
-import { NoPermissionError } from "../constant";
-import { User_Role } from "../constant";
-import { Error_Code } from "../constant";
-import { UnauthorizedError } from "../constant";
+import { Error_Code, NoPermissionError, User_Role } from "../constant";
 import { UserModel } from "../models/UserModel";
-import { UserResponse } from "../types";
-import { MyContext } from "../types";
+import { User, UserResponse } from "../types";
 
 export const getUser = async (
   _parents: never,
   args: { username: string },
-  { user }: MyContext
+  { user }: any
 ): Promise<UserResponse> => {
-  if (!user) return { errors: UnauthorizedError };
-  const { username } = args;
-  const { role } = user;
+  const { role } = user.user;
   if (role !== User_Role.admin) return { errors: NoPermissionError };
   else {
-    const _user = await UserModel.find({ username }).exec();
-    if (_user) return { data: user };
+    const _user = (await UserModel.findOne({
+      username: args.username,
+    }).exec()) as User;
+    if (_user) return { data: _user };
     else
       return {
         errors: {
