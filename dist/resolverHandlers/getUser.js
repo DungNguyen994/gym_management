@@ -13,7 +13,7 @@ exports.getUser = void 0;
 const constant_1 = require("../constant");
 const UserModel_1 = require("../models/UserModel");
 const getUser = (_parents, args, { user }) => __awaiter(void 0, void 0, void 0, function* () {
-    const { role } = user.user;
+    const { role } = user === null || user === void 0 ? void 0 : user.user;
     if (role !== constant_1.User_Role.admin)
         return { errors: constant_1.NoPermissionError };
     else {

@@ -7,7 +7,7 @@ export const getUser = async (
   args: { username: string },
   { user }: any
 ): Promise<UserResponse> => {
-  const { role } = user.user;
+  const { role } = user?.user;
   if (role !== User_Role.admin) return { errors: NoPermissionError };
   else {
     const _user = (await UserModel.findOne({
