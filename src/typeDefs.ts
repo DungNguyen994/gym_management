@@ -18,8 +18,8 @@ export const typeDefs = gql`
     productName: String!
     unitPrice: Float!
     total: Float!
-    collected: Float!
-    change: Float!
+    collected: Float
+    change: Float
     term: String
     quantity: Int
     paymentMethod: String!
@@ -46,8 +46,8 @@ export const typeDefs = gql`
     membershipType: String
     unitPrice: Float
     total: Float!
-    collected: Float!
-    change: Float!
+    collected: Float
+    change: Float
     term: String
     quantity: Int
     paymentMethod: String!
@@ -115,8 +115,8 @@ export const typeDefs = gql`
     membershipType: String
     createdAt: String
     total: Float!
-    collected: Float!
-    change: Float!
+    collected: Float
+    change: Float
     term: String
     paymentMethod: String!
   }

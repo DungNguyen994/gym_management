@@ -20,8 +20,8 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     productName: String!
     unitPrice: Float!
     total: Float!
-    collected: Float!
-    change: Float!
+    collected: Float
+    change: Float
     term: String
     quantity: Int
     paymentMethod: String!
@@ -48,8 +48,8 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     membershipType: String
     unitPrice: Float
     total: Float!
-    collected: Float!
-    change: Float!
+    collected: Float
+    change: Float
     term: String
     quantity: Int
     paymentMethod: String!
@@ -117,8 +117,8 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
     membershipType: String
     createdAt: String
     total: Float!
-    collected: Float!
-    change: Float!
+    collected: Float
+    change: Float
     term: String
     paymentMethod: String!
   }

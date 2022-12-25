@@ -107,9 +107,9 @@ class Payment {
   @Field()
   term?: string;
   @Field()
-  collected: number;
+  collected?: number;
   @Field()
-  change: number;
+  change?: number;
   @Field()
   total: number;
   @Field()
@@ -122,9 +122,9 @@ class PaymentInput {
   @Field()
   term: string;
   @Field()
-  collected: number;
+  collected?: number;
   @Field()
-  change: number;
+  change?: number;
   @Field()
   total: number;
   @Field()
