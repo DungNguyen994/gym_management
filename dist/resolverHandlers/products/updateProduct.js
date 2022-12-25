@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateProductHandler = void 0;
+const Inventory_1 = require("../../models/Inventory");
 const constant_1 = require("../../constant");
 const ProductModel_1 = require("../../models/ProductModel");
 const updateProductHandler = (_parents, args, { user }) => __awaiter(void 0, void 0, void 0, function* () {
@@ -20,6 +21,7 @@ const updateProductHandler = (_parents, args, { user }) => __awaiter(void 0, voi
         return { errors: constant_1.NoPermissionError };
     else {
         yield ProductModel_1.ProductModel.findByIdAndUpdate(args.id, args);
+        yield Inventory_1.InventoryModel.findOneAndUpdate({ productId: args.id }, args);
         return { data: "Updated Product Successfully" };
     }
 });

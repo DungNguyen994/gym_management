@@ -1,3 +1,4 @@
+import { InventoryModel } from "../../models/Inventory";
 import {
   NoPermissionError,
   UnauthorizedError,
@@ -16,6 +17,7 @@ export const updateProductHandler = async (
   if (role === User_Role.member) return { errors: NoPermissionError };
   else {
     await ProductModel.findByIdAndUpdate(args.id, args);
+    await InventoryModel.findOneAndUpdate({ productId: args.id }, args);
     return { data: "Updated Product Successfully" };
   }
 };
