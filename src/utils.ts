@@ -3,10 +3,10 @@ import { MembershipModel } from "./models/MembershipModel";
 import { Membership } from "./types";
 
 export const updateRemainingDays = async () => {
-  const activateMemberships = await MembershipModel.find({
+  const activeMemberships = await MembershipModel.find({
     status: MEMBERSHIP_STATUS.ACTIVE,
   }).exec();
-  activateMemberships.forEach((membership) => {
+  activeMemberships.forEach((membership) => {
     if (membership.remainingDays && membership.remainingDays > 0) {
       membership.remainingDays = Number(membership.remainingDays) - 1;
     } else {

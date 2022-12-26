@@ -13,10 +13,10 @@ exports.getRemainingDays = exports.getMembershipStatus = exports.updateRemaining
 const constant_1 = require("./constant");
 const MembershipModel_1 = require("./models/MembershipModel");
 const updateRemainingDays = () => __awaiter(void 0, void 0, void 0, function* () {
-    const activateMemberships = yield MembershipModel_1.MembershipModel.find({
+    const activeMemberships = yield MembershipModel_1.MembershipModel.find({
         status: constant_1.MEMBERSHIP_STATUS.ACTIVE,
     }).exec();
-    activateMemberships.forEach((membership) => {
+    activeMemberships.forEach((membership) => {
         if (membership.remainingDays && membership.remainingDays > 0) {
             membership.remainingDays = Number(membership.remainingDays) - 1;
         }
