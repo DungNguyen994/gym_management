@@ -24,7 +24,9 @@ interface MyContext {
 @ObjectType()
 class User {
   @Field()
-  username: string;
+  readonly id?: string;
+  @Field()
+  username?: string;
   @Field()
   firstName?: string;
   @Field()
@@ -34,7 +36,11 @@ class User {
   @Field()
   email?: string;
   @Field()
-  role: string;
+  photo?: string;
+  @Field()
+  role?: string;
+  @Field()
+  password?: string;
 }
 
 @ObjectType()

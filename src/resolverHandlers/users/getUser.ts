@@ -1,6 +1,6 @@
-import { Error_Code, NoPermissionError, User_Role } from "../constant";
-import { UserModel } from "../models/UserModel";
-import { User, UserResponse } from "../types";
+import { Error_Code, NoPermissionError, User_Role } from "../../constant";
+import { UserModel } from "../../models/UserModel";
+import { User, UserResponse } from "../../types";
 
 export const getUser = async (
   _parents: never,

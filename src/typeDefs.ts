@@ -2,12 +2,14 @@ import { gql } from "apollo-server-core";
 
 export const typeDefs = gql`
   type User {
+    id: String
     username: String
     email: String
     phoneNumber: String
     firstName: String
     lastName: String
     role: String
+    photo: String
   }
   input NoteInput {
     message: String
@@ -291,6 +293,19 @@ export const typeDefs = gql`
       name: String!
       pricePerMonth: Float!
       discountPercent: Float!
+    ): TextResponse
+    updateUser(
+      id: ID!
+      firstName: String!
+      lastName: String!
+      phoneNumber: String
+      email: String
+      photo: String
+    ): TextResponse
+    changePassword(
+      id: ID!
+      password: String!
+      currentPassword: String!
     ): TextResponse
   }
 `;

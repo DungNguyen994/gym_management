@@ -34,7 +34,7 @@ const userSchema = new mongoose_1.Schema({
     phoneNumber: String,
     email: String,
     refreshToken: String,
-    photo: Buffer,
+    photo: String,
 });
 exports.UserModel = mongoose_1.default.model("user", userSchema);
 //# sourceMappingURL=UserModel.js.map

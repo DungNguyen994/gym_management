@@ -17,6 +17,10 @@ let User = class User {
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
+], User.prototype, "id", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
 ], User.prototype, "username", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
@@ -37,7 +41,15 @@ __decorate([
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
+], User.prototype, "photo", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
 ], User.prototype, "role", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], User.prototype, "password", void 0);
 User = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], User);

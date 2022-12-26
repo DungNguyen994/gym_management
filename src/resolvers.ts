@@ -1,6 +1,6 @@
 import { UnauthorizedError } from "./constant";
-import { getUser } from "./resolverHandlers/getUser";
-import { getUsers } from "./resolverHandlers/getUsers";
+import { getUser } from "./resolverHandlers/users/getUser";
+import { getUsers } from "./resolverHandlers/users/getUsers";
 import { getInventoryHandler } from "./resolverHandlers/inventory/getInventory";
 import { stockInHandler } from "./resolverHandlers/inventory/stockIn";
 import { loginHandler } from "./resolverHandlers/login";
@@ -29,6 +29,8 @@ import { removeUserHandler } from "./resolverHandlers/removeUser";
 import { checkInHandler } from "./resolverHandlers/visitHistory/checkIn";
 import { getVisitHistoryHandler } from "./resolverHandlers/visitHistory/getVisitHistory";
 import { User, UserResponse } from "./types";
+import { updateUserHandler } from "./resolverHandlers/users/updateUser";
+import { changePasswordHandler } from "./resolverHandlers/users/changePassword";
 
 interface MyContext {
   user: User;
@@ -76,5 +78,7 @@ export const resolvers = {
     addMembershipType: addMembershipTypeHandler,
     deleteMembershipType: deleteMembershipTypeHandler,
     updateMembershipType: updateMembershipTypeHandler,
+    updateUser: updateUserHandler,
+    changePassword: changePasswordHandler,
   },
 };

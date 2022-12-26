@@ -9,6 +9,6 @@ const userSchema = new Schema({
   phoneNumber: String,
   email: String,
   refreshToken: String,
-  photo: Buffer,
+  photo: String,
 });
 export const UserModel = mongoose.model("user", userSchema);

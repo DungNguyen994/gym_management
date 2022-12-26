@@ -1,9 +1,9 @@
-import { User_Role } from "../constant";
-import { NoPermissionError } from "../constant";
-import { UnauthorizedError } from "../constant";
-import { UserModel } from "../models/UserModel";
-import { ListUserResponse, User } from "../types";
-import { MyContext } from "../types";
+import { User_Role } from "../../constant";
+import { NoPermissionError } from "../../constant";
+import { UnauthorizedError } from "../../constant";
+import { UserModel } from "../../models/UserModel";
+import { ListUserResponse, User } from "../../types";
+import { MyContext } from "../../types";
 
 export const getUsers = async (
   _parents: never,

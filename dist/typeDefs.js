@@ -4,12 +4,14 @@ exports.typeDefs = void 0;
 const apollo_server_core_1 = require("apollo-server-core");
 exports.typeDefs = (0, apollo_server_core_1.gql) `
   type User {
+    id: String
     username: String
     email: String
     phoneNumber: String
     firstName: String
     lastName: String
     role: String
+    photo: String
   }
   input NoteInput {
     message: String
@@ -293,6 +295,19 @@ exports.typeDefs = (0, apollo_server_core_1.gql) `
       name: String!
       pricePerMonth: Float!
       discountPercent: Float!
+    ): TextResponse
+    updateUser(
+      id: ID!
+      firstName: String!
+      lastName: String!
+      phoneNumber: String
+      email: String
+      photo: String
+    ): TextResponse
+    changePassword(
+      id: ID!
+      password: String!
+      currentPassword: String!
     ): TextResponse
   }
 `;

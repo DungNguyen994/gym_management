@@ -11,8 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resolvers = void 0;
 const constant_1 = require("./constant");
-const getUser_1 = require("./resolverHandlers/getUser");
-const getUsers_1 = require("./resolverHandlers/getUsers");
+const getUser_1 = require("./resolverHandlers/users/getUser");
+const getUsers_1 = require("./resolverHandlers/users/getUsers");
 const getInventory_1 = require("./resolverHandlers/inventory/getInventory");
 const stockIn_1 = require("./resolverHandlers/inventory/stockIn");
 const login_1 = require("./resolverHandlers/login");
@@ -40,6 +40,8 @@ const register_1 = require("./resolverHandlers/register");
 const removeUser_1 = require("./resolverHandlers/removeUser");
 const checkIn_1 = require("./resolverHandlers/visitHistory/checkIn");
 const getVisitHistory_1 = require("./resolverHandlers/visitHistory/getVisitHistory");
+const updateUser_1 = require("./resolverHandlers/users/updateUser");
+const changePassword_1 = require("./resolverHandlers/users/changePassword");
 exports.resolvers = {
     Query: {
         users: getUsers_1.getUsers,
@@ -78,6 +80,8 @@ exports.resolvers = {
         addMembershipType: addMembershipType_1.addMembershipTypeHandler,
         deleteMembershipType: deleteMembershipType_1.deleteMembershipTypeHandler,
         updateMembershipType: updateMembershipType_1.updateMembershipTypeHandler,
+        updateUser: updateUser_1.updateUserHandler,
+        changePassword: changePassword_1.changePasswordHandler,
     },
 };
 //# sourceMappingURL=resolvers.js.map
