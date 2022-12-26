@@ -24,7 +24,9 @@ export const getPaymentsHandler = async (
       );
       if (foundMember)
         payment.memberName =
-          foundMember?.firstName + " " + foundMember?.lastName || "";
+          foundMember?.firstName && foundMember?.lastName
+            ? foundMember?.firstName + " " + foundMember?.lastName
+            : "";
     });
     return { data: payments };
   }

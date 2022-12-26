@@ -25,7 +25,9 @@ const getVisitHistoryHandler = (_parents, _args, { user }) => __awaiter(void 0, 
         visits.forEach((visit) => {
             const foundMember = members.find((member) => member.id === visit.memberId);
             visit.memberName =
-                (foundMember === null || foundMember === void 0 ? void 0 : foundMember.firstName) + " " + (foundMember === null || foundMember === void 0 ? void 0 : foundMember.lastName) || "";
+                (foundMember === null || foundMember === void 0 ? void 0 : foundMember.firstName) && (foundMember === null || foundMember === void 0 ? void 0 : foundMember.lastName)
+                    ? (foundMember === null || foundMember === void 0 ? void 0 : foundMember.firstName) + " " + (foundMember === null || foundMember === void 0 ? void 0 : foundMember.lastName)
+                    : "";
         });
         return { data: visits };
     }

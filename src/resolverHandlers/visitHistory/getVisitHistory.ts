@@ -28,7 +28,9 @@ export const getVisitHistoryHandler = async (
         (member) => member.id === visit.memberId
       );
       visit.memberName =
-        foundMember?.firstName + " " + foundMember?.lastName || "";
+        foundMember?.firstName && foundMember?.lastName
+          ? foundMember?.firstName + " " + foundMember?.lastName
+          : "";
     });
     return { data: visits };
   }
