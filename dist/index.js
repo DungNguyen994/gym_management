@@ -79,6 +79,7 @@ function startApolloServer() {
         yield server.start();
         (0, node_schedule_1.scheduleJob)("0 0 0 * * *", () => {
             (0, utils_1.updateRemainingDays)();
+            (0, utils_1.activateOnHoldMembership)();
         });
         server.applyMiddleware({ app, cors: corsOptions_1.corsOptions });
         yield new Promise((resolve) => httpServer.listen({ port: process.env.PORT }, resolve));

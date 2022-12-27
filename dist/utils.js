@@ -8,8 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRemainingDays = exports.getMembershipStatus = exports.updateRemainingDays = void 0;
+exports.getRemainingDays = exports.getMembershipStatus = exports.activateOnHoldMembership = exports.updateRemainingDays = void 0;
+const dayjs_1 = __importDefault(require("dayjs"));
 const constant_1 = require("./constant");
 const MembershipModel_1 = require("./models/MembershipModel");
 const updateRemainingDays = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -28,6 +32,20 @@ const updateRemainingDays = () => __awaiter(void 0, void 0, void 0, function* ()
     console.log("Updated remaining days for memberships successfully");
 });
 exports.updateRemainingDays = updateRemainingDays;
+const activateOnHoldMembership = () => __awaiter(void 0, void 0, void 0, function* () {
+    const onHoldMemberships = yield MembershipModel_1.MembershipModel.find({
+        status: constant_1.MEMBERSHIP_STATUS.HOLD,
+    }).exec();
+    onHoldMemberships.forEach((membership) => {
+        if (!membership.holdDate &&
+            (0, dayjs_1.default)(membership.startDate).isSame((0, dayjs_1.default)(), "day")) {
+            membership.status = constant_1.MEMBERSHIP_STATUS.ACTIVE;
+        }
+        membership.save();
+    });
+    console.log("Activate on hold memberships successfully");
+});
+exports.activateOnHoldMembership = activateOnHoldMembership;
 const getMembershipStatus = (memberships) => {
     const isActive = memberships.some((membership) => membership.status === constant_1.MEMBERSHIP_STATUS.ACTIVE);
     const isExpired = memberships.every((membership) => membership.status === constant_1.MEMBERSHIP_STATUS.EXPIRED);

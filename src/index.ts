@@ -14,7 +14,7 @@ import { scheduleJob } from "node-schedule";
 import { corsOptions } from "./config/corsOptions";
 import { resolvers } from "./resolvers";
 import { typeDefs } from "./typeDefs";
-import { updateRemainingDays } from "./utils";
+import { activateOnHoldMembership, updateRemainingDays } from "./utils";
 dotenv.config();
 async function startApolloServer() {
   const app = express();
@@ -48,6 +48,7 @@ async function startApolloServer() {
   await server.start();
   scheduleJob("0 0 0 * * *", () => {
     updateRemainingDays();
+    activateOnHoldMembership();
   });
 
   server.applyMiddleware({ app, cors: corsOptions });
