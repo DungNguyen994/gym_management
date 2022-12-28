@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { PaymentModel } from "../../models/PaymentModel";
 import {
   DATE_FORMAT,
+  Error_Code,
   MEMBERSHIP_STATUS,
   NoPermissionError,
   UnauthorizedError,
@@ -11,6 +12,7 @@ import { MemberModel } from "../../models/MemberModel";
 import { AddMemberInput, MyContext, TextResponse } from "../../types";
 import RelativeTime from "dayjs/plugin/relativeTime";
 import { MembershipModel } from "../../models/MembershipModel";
+import { MembershipTypeModel } from "../../models/MembershipTypes";
 
 export const addMemberHandler = async (
   _parents: never,
@@ -22,6 +24,17 @@ export const addMemberHandler = async (
   if (role === User_Role.member) return { errors: NoPermissionError };
   else {
     dayjs.extend(RelativeTime);
+    const membershipTypes = await MembershipTypeModel.find().exec();
+    const membershipTypeNames = membershipTypes.map((t) => t.name);
+    if (!membershipTypeNames.includes(args.membership.membershipType)) {
+      return {
+        errors: {
+          type: Error_Code.invalid,
+          message: "Choose a valid membership Type",
+          pointer: "membership.membershipType",
+        },
+      };
+    }
     const member = new MemberModel({
       ...args,
       createdAt: dayjs().format(DATE_FORMAT),

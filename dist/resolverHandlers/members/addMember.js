@@ -19,6 +19,7 @@ const constant_1 = require("../../constant");
 const MemberModel_1 = require("../../models/MemberModel");
 const relativeTime_1 = __importDefault(require("dayjs/plugin/relativeTime"));
 const MembershipModel_1 = require("../../models/MembershipModel");
+const MembershipTypes_1 = require("../../models/MembershipTypes");
 const addMemberHandler = (_parents, args, { user }) => __awaiter(void 0, void 0, void 0, function* () {
     if (!user)
         return { errors: constant_1.UnauthorizedError };
@@ -27,6 +28,17 @@ const addMemberHandler = (_parents, args, { user }) => __awaiter(void 0, void 0,
         return { errors: constant_1.NoPermissionError };
     else {
         dayjs_1.default.extend(relativeTime_1.default);
+        const membershipTypes = yield MembershipTypes_1.MembershipTypeModel.find().exec();
+        const membershipTypeNames = membershipTypes.map((t) => t.name);
+        if (!membershipTypeNames.includes(args.membership.membershipType)) {
+            return {
+                errors: {
+                    type: constant_1.Error_Code.invalid,
+                    message: "Choose a valid membership Type",
+                    pointer: "membership.membershipType",
+                },
+            };
+        }
         const member = new MemberModel_1.MemberModel(Object.assign(Object.assign({}, args), { createdAt: (0, dayjs_1.default)().format(constant_1.DATE_FORMAT) }));
         const newMember = yield member.save();
         const payment = Object.assign(Object.assign({}, args.payment), { createdAt: (0, dayjs_1.default)().format(constant_1.DATE_FORMAT), memberId: newMember._id });
