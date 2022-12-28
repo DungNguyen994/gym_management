@@ -18,6 +18,7 @@ const constant_1 = require("../../constant");
 const MemberModel_1 = require("../../models/MemberModel");
 const MembershipModel_1 = require("../../models/MembershipModel");
 const PaymentModel_1 = require("../../models/PaymentModel");
+const MembershipTypes_1 = require("../../models/MembershipTypes");
 const updateMemberHandler = (_parents, args, { user }) => __awaiter(void 0, void 0, void 0, function* () {
     if (!user)
         return { errors: constant_1.UnauthorizedError };
@@ -25,6 +26,18 @@ const updateMemberHandler = (_parents, args, { user }) => __awaiter(void 0, void
     if (role === constant_1.User_Role.member)
         return { errors: constant_1.NoPermissionError };
     else {
+        const membershipTypes = yield MembershipTypes_1.MembershipTypeModel.find().exec();
+        const membershipTypeNames = membershipTypes.map((t) => t.name);
+        if (args.newMembership &&
+            !membershipTypeNames.includes(args.newMembership.membershipType)) {
+            return {
+                errors: {
+                    type: constant_1.Error_Code.invalid,
+                    message: "Choose a valid membership Type",
+                    pointer: "membership.membershipType",
+                },
+            };
+        }
         yield MemberModel_1.MemberModel.findByIdAndUpdate(args.id, args);
         const { newMembership, payment } = args;
         if (newMembership) {

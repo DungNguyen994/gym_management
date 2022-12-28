@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import {
   DATE_FORMAT,
+  Error_Code,
   NoPermissionError,
   UnauthorizedError,
   User_Role,
@@ -9,6 +10,7 @@ import { MemberModel } from "../../models/MemberModel";
 import { MembershipModel } from "../../models/MembershipModel";
 import { Member, MyContext, TextResponse } from "../../types";
 import { PaymentModel } from "../../models/PaymentModel";
+import { MembershipTypeModel } from "../../models/MembershipTypes";
 
 export const updateMemberHandler = async (
   _parents: never,
@@ -19,6 +21,20 @@ export const updateMemberHandler = async (
   const { role } = user;
   if (role === User_Role.member) return { errors: NoPermissionError };
   else {
+    const membershipTypes = await MembershipTypeModel.find().exec();
+    const membershipTypeNames = membershipTypes.map((t) => t.name);
+    if (
+      args.newMembership &&
+      !membershipTypeNames.includes(args.newMembership.membershipType)
+    ) {
+      return {
+        errors: {
+          type: Error_Code.invalid,
+          message: "Choose a valid membership Type",
+          pointer: "membership.membershipType",
+        },
+      };
+    }
     await MemberModel.findByIdAndUpdate(args.id, args);
     const { newMembership, payment } = args;
     if (newMembership) {
