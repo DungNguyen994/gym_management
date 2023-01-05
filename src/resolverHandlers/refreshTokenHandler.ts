@@ -42,7 +42,7 @@ export const refreshTokenHandler = async (
       accessToken = sign(
         { user: userInfo },
         process.env.ACCESS_TOKEN_SECRET || "",
-        { expiresIn: "10m" }
+        { expiresIn: "2h" }
       );
     }
   );
