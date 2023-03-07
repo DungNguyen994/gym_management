@@ -43,7 +43,7 @@ const refreshTokenHandler = (_parents, _args, { req }) => __awaiter(void 0, void
         var _a;
         if (err || username !== ((_a = decoded.user) === null || _a === void 0 ? void 0 : _a.username))
             return;
-        accessToken = (0, jsonwebtoken_1.sign)({ user: userInfo }, process.env.ACCESS_TOKEN_SECRET || "", { expiresIn: "10m" });
+        accessToken = (0, jsonwebtoken_1.sign)({ user: userInfo }, process.env.ACCESS_TOKEN_SECRET || "", { expiresIn: "2h" });
     });
     if (!accessToken)
         return {
